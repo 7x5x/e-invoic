@@ -1,0 +1,15 @@
+20240626	09:37:48	d93a427c-38cb-41a6-9f4f-2d08d7719c93	OPTIONS	http://localhost:3001	/auth
+20240626	09:37:48	d4543e59-c337-4a35-84b4-ff26beea616c	OPTIONS	http://localhost:3001	/auth
+20240626	09:37:49	7498c28a-d028-448e-ad09-53a51da73e47	OPTIONS	http://localhost:3001	/auth
+20240626	09:37:57	c7ad8a85-b945-41aa-89d9-51f19c272965	GET	undefined	/login
+20240626	09:37:57	1d31050a-7253-42e7-9d9d-396add087773	GET	undefined	/favicon.ico
+20240626	09:38:57	89818a2f-23b5-47e2-b36a-efe34114b864	OPTIONS	http://localhost:3001	/auth
+20240626	09:38:57	c2400917-71b4-431a-8184-24f83ff50d02	POST	http://localhost:3001	/auth
+20240626	09:40:22	55740c2b-c886-4e73-8cf3-dded1788a7dd	OPTIONS	http://localhost:3001	/auth
+20240626	09:40:22	6ff2eee0-32bf-4f48-aa55-09bc9ac4f6a4	POST	http://localhost:3001	/auth
+20240626	09:41:02	9273f84d-8432-4f11-aeb9-c89b8d86e87c	OPTIONS	http://localhost:3001	/register
+20240626	09:41:02	d33592ca-3c88-40f9-b957-8ac815dea3d9	POST	http://localhost:3001	/register
+20240626	09:41:13	c0e75814-a7f3-4b63-8737-ac2e93133768	OPTIONS	http://localhost:3001	/auth
+20240626	09:41:13	72c815fc-6b17-480b-9ec5-c9af1e557e5f	POST	http://localhost:3001	/auth
+20240626	09:45:31	2b869ec4-2a52-439b-be4b-a748c70b1229	OPTIONS	http://127.0.0.1:3001	/auth
+20240626	09:45:31	3c69352e-5699-4f2d-91b4-96713d58f9b4	POST	http://127.0.0.1:3001	/auth
