@@ -319,7 +319,8 @@ export class ZATCATaxInvoice {
           "@_currencyID": "SAR",
           "#text":
             CurrencyCode != DocumentCurrencyCode.SAR
-              ? taxes_total * conversion_rate ?? (1).toFixedNoRounding(2)
+              ? (taxes_total * conversion_rate).toFixedNoRounding(2) ??
+                (1).toFixedNoRounding(2)
               : taxes_total.toFixedNoRounding(2),
         },
       },

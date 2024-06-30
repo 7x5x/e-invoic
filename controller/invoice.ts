@@ -3,7 +3,6 @@ import { Request, Response, NextFunction } from "express";
 import { EGS } from "../src/zatca/egs/index.js";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
-import fs from "fs";
 import {
   ZATCATaxInvoiceSchema,
   ZATCATaxInvoiceSchemaType,
@@ -39,7 +38,9 @@ export const invoiceRouter = async (req: Request, res: Response) => {
     return res.status(200).json(result);
   } catch (error) {
     error.Statcode === 202 && saveInvoice(filename, error.clearedInvoice);
-    return res.status(error.Statcode || 500).json(error);
+    return res
+      .status(error.Statcode || 500)
+      .json({ ...error, invoiceID: value.props.invoice_serial_number });
   }
 };
 

@@ -184,7 +184,7 @@ const ZATCAInvoiceProps = {
     },
     payment_method: {
       type: "string",
-      enum: ["CreditCard", "Cash", "PayPal"],
+      enum: ["CASH = 10", "CREDIT=30", "BANK_ACCOUNT=42", "BANK_CARD=48"],
     },
     previous_invoice_hash: {
       type: "string",
