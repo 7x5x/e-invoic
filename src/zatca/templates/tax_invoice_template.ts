@@ -123,7 +123,7 @@ export interface ZATCAInvoiceLineItemTax {
 }
 
 export interface ZATCAInvoiceLineItem {
-  id: string;
+  id: number;
   name: string;
   notes?: string[];
   quantity: number;
@@ -146,11 +146,11 @@ export interface ZatcaCustomerInfo {
 
 export interface CustomerLocation {
   Street: string;
-  BuildingNumber: string;
-  PlotIdentification: string;
+  BuildingNumber: number;
+  PlotIdentification: number;
   CitySubdivisionName: string;
   CityName: string;
-  PostalZone: string;
+  PostalZone: number;
 }
 export enum DocumentCurrencyCode {
   SAR = "SAR",
@@ -255,11 +255,11 @@ export default function populate(props: ZATCAInvoiceProps): string {
   );
   populated_template = populated_template.replace(
     "SET_BUILDING_NUMBER",
-    props.egs_info.location.building
+    props.egs_info.location.building.toString()
   );
   populated_template = populated_template.replace(
     "SET_PLOT_IDENTIFICATION",
-    props.egs_info.location.plot_identification
+    props.egs_info.location.plot_identification.toString()
   );
   populated_template = populated_template.replace(
     "SET_CITY_SUBDIVISION",
@@ -271,7 +271,7 @@ export default function populate(props: ZATCAInvoiceProps): string {
   );
   populated_template = populated_template.replace(
     "SET_POSTAL_NUMBER",
-    props.egs_info.location.postal_zone
+    props.egs_info.location.postal_zone.toString()
   );
 
   populated_template = populated_template.replace(
@@ -298,11 +298,11 @@ export default function populate(props: ZATCAInvoiceProps): string {
   );
   populated_template = populated_template.replace(
     "SET_CUSTOMER_BUILDING_NUMBER",
-    props.customerInfo.location.BuildingNumber
+    props.customerInfo.location.BuildingNumber.toString()
   );
   populated_template = populated_template.replace(
     "SET_CUSTOMER_PLOT_IDENTIFICATION",
-    props.customerInfo.location.PlotIdentification
+    props.customerInfo.location.PlotIdentification.toString()
   );
   populated_template = populated_template.replace(
     "SET_CUSTOMER_CITY_SUBDIVISION",
@@ -314,7 +314,7 @@ export default function populate(props: ZATCAInvoiceProps): string {
   );
   populated_template = populated_template.replace(
     "SET_CUSTOMER_POSTAL_NUMBER",
-    props.customerInfo.location.PostalZone
+    props.customerInfo.location.PostalZone.toString()
   );
   populated_template = populated_template.replace(
     "SET_CUSTOMER_VAT_NAME",

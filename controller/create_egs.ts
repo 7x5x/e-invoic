@@ -38,7 +38,7 @@ const tempInvoice: any = {
     "NWZlY2ViNjZmZmM4NmYzOGQ5NTI3ODZjNmQ2OTZjNzljMmRiYzIzOWRkNGU5MWI0NjcyOWQ3M2EyN2ZiNTdlOQ==",
   line_items: [
     {
-      id: "1",
+      id: 1,
       name: "TEST NAME",
       note: "Test To Create New EGS",
       quantity: 1,
@@ -54,11 +54,11 @@ const customer: ZatcaCustomerInfo = {
   RegistrationName: "Acme Widget’s LTD 2",
   location: {
     Street: "الرياض",
-    BuildingNumber: "1111",
-    PlotIdentification: "2223",
+    BuildingNumber: 1111,
+    PlotIdentification: 2223,
     CitySubdivisionName: "الرياض",
     CityName: "الدمام | Dammam",
-    PostalZone: "12222",
+    PostalZone: 12222,
   },
 };
 
@@ -120,9 +120,9 @@ const new_egs = async (data: egs_unit) => {
       productionData: await egs.issueProductionCertificate(
         compliance_request_id
       ),
-      private_key:Buffer.from(private_key).toString("base64") ,
+      private_key: Buffer.from(private_key).toString("base64"),
     };
-    
+
     return productionData;
   } catch (error: any) {
     throw error;

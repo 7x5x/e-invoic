@@ -22,8 +22,8 @@ const Location = {
       example: "4167",
     },
     building: {
-      type: "string",
-      example: "6602",
+      type: "number",
+      example: 6602,
     },
     postal_zone: {
       type: "string",
@@ -117,7 +117,7 @@ const EGSUnitInfoSchema = {
         city_subdivision: { type: "string", example: "Al-hazm Dist" },
         street: { type: "string", example: "street street st" },
         plot_identification: { type: "string", example: "4167" },
-        building: { type: "string", example: "6602" },
+        building: { type: "number", example: "6602" },
         postal_zone: { type: "string", example: "32714" },
       },
     },

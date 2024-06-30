@@ -11,7 +11,7 @@ export const ZATCAInvoiceLineItemDiscountSchema =
   });
 
 export const ZATCAInvoiceLineItemSchema = Joi.object<ZATCAInvoiceLineItem>({
-  id: Joi.string().required(),
+  id: Joi.number().required(),
   name: Joi.string().required(),
   notes: Joi.array(),
   quantity: Joi.number().required(),

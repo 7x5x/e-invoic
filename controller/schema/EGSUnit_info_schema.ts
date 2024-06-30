@@ -11,9 +11,9 @@ const EGSLocationSchema = Joi.object<EGSUnitLocation>({
   city: Joi.string().required(),
   city_subdivision: Joi.string().required(),
   street: Joi.string().required(),
-  plot_identification: Joi.string().required(),
-  building: Joi.string().required(),
-  postal_zone: Joi.string().required(),
+  plot_identification: Joi.number().required(),
+  building: Joi.number().required(),
+  postal_zone: Joi.number().required(),
 });
 
 const EGSUnitInfoSchema = Joi.object<EGSUnitInfo>({
@@ -32,4 +32,4 @@ const EGSUnitSchema = Joi.object<egs_unit>({
   device_name: Joi.string().required(),
 });
 
-export { EGSUnitInfoSchema, EGSUnitSchema,EGSLocationSchema };
+export { EGSUnitInfoSchema, EGSUnitSchema, EGSLocationSchema };

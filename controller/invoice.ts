@@ -1,4 +1,5 @@
 import { ZATCATaxInvoice } from "../src/zatca/templates/ZATCATaxInvoice.js";
+import { Request, Response, NextFunction } from "express";
 import { EGS } from "../src/zatca/egs/index.js";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
@@ -7,17 +8,20 @@ import {
   ZATCATaxInvoiceSchema,
   ZATCATaxInvoiceSchemaType,
 } from "./schema/invice_schemas.js";
-import { removeChars } from "../lib/removeChars.js";
+import { saveInvoice } from "../lib/removeChars.js";
 
-const statusMap = {
-  pass: 1,
-  warning: 2,
-  error: 3,
-};
-
-export const invoiceRouter = async (req, res, next) => {
+export const invoiceRouter = async (req: Request, res: Response) => {
   const { error, value } = ZATCATaxInvoiceSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
+
+  const issue_date = moment(new Date()).format("YYYY-MM-DD");
+  const issue_time = moment(new Date()).format("HH:mm:ss");
+
+  value.props.issue_date = issue_date;
+  value.props.issue_time = issue_time;
+
+  const filename = `${value.props.egs_info.CRN_number}_${issue_date}T${issue_time}_${value.props.invoice_counter_number}.xml`;
+
   try {
     value.props.egs_info.uuid = uuidv4();
 
@@ -30,24 +34,18 @@ export const invoiceRouter = async (req, res, next) => {
       value.productionData.production_certificate,
       "base64"
     ).toString();
-
-    return res.status(200).json(await main(value));
-  } catch (error) { 
+    const result = await main(value);
+    saveInvoice(filename, result.clearedInvoice);
+    return res.status(200).json(result);
+  } catch (error) {
+    error.Statcode === 202 && saveInvoice(filename, error.clearedInvoice);
     return res.status(error.Statcode || 500).json(error);
   }
 };
 
 export const main = async (data: ZATCATaxInvoiceSchemaType) => {
-  const issue_date = moment(new Date()).format("YYYY-MM-DD");
-  const issue_time = moment(new Date()).format("HH:mm:ss");
   try {
-    const invoice = new ZATCATaxInvoice({
-      props: {
-        ...data.props,
-        issue_date,
-        issue_time,
-      },
-    });
+    const invoice = new ZATCATaxInvoice({ props: { ...data.props } });
 
     const egs = new EGS({
       ...data.props.egs_info,
@@ -61,19 +59,12 @@ export const main = async (data: ZATCATaxInvoiceSchemaType) => {
 
     const res = await egs.clearanceInvoice(signed_invoice_string, invoice_hash);
 
-    const filename = removeChars(
-      `${data.props.egs_info.CRN_number}_${issue_date}T${issue_time}_${data.props.invoice_counter_number}.xml`
-    );
-    const filePath = `invoices/${filename}`;
-    fs.writeFile(filePath, signed_invoice_string, (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("Successfully wrote data to file!");
-      }
-    });
-
-    return { ...res, hash: invoice_hash };
+    return {
+      ...res,
+      hash: invoice_hash,
+      qr,
+      invoiceID: data.props.invoice_serial_number,
+    };
   } catch (error: any) {
     throw error;
   }

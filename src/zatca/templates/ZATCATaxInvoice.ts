@@ -256,7 +256,7 @@ export class ZATCATaxInvoice {
         // BR-DEC-19
         "cbc:TaxableAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxable_amount.toFixedNoRounding(2)+100,
+          "#text": taxable_amount.toFixedNoRounding(2),
         },
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
@@ -408,7 +408,6 @@ export class ZATCATaxInvoice {
         )
       : parseFloat(total_subtotal.toFixed(2));
 
-    
     this.invoice_xml.set("Invoice/cac:Delivery", false, {
       "cbc:ActualDeliveryDate": props.delivery_date,
     });

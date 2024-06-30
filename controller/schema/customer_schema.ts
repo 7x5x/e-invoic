@@ -6,11 +6,11 @@ import {
 
 export const CustomerLocationSchema = Joi.object<CustomerLocation>({
   Street: Joi.string().required(),
-  BuildingNumber: Joi.string().required(),
-  PlotIdentification: Joi.string().required(),
+  BuildingNumber: Joi.number().required(),
+  PlotIdentification: Joi.number().required(),
   CitySubdivisionName: Joi.string().required(),
   CityName: Joi.string().required(),
-  PostalZone: Joi.string().required(),
+  PostalZone: Joi.number().required(),
 });
 
 export const ZatcaCustomerInfoSchema = Joi.object<ZatcaCustomerInfo>({
