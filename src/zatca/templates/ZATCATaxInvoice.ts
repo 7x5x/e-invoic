@@ -9,7 +9,6 @@ import defaultSimplifiedTaxInvoice, {
   ZATCAInvoiceLineItemDiscount,
 } from "./tax_invoice_template.js";
 
- 
 export {
   ZATCAInvoiceLineItem,
   ZATCAInvoiceProps,
@@ -80,8 +79,6 @@ export class ZATCATaxInvoice {
         },
       });
     });
-
- 
 
     let line_item_subtotal =
       line_item.tax_exclusive_price * line_item.quantity -
@@ -221,7 +218,7 @@ export class ZATCATaxInvoice {
         // BR-DEC-19
         "cbc:TaxableAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": 20+taxable_amount.toFixed(2),
+          "#text": taxable_amount.toFixed(2),
         },
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,

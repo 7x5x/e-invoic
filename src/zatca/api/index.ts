@@ -136,19 +136,30 @@ class API {
         "Accept-Language": "en",
       };
 
-      const response = await axios.post(
-        `${settings.SANDBOX_BASEURL}/compliance/invoices`,
-        // `${settings.SANDBOX_BASEURL}/precompliance/invoices`,
-        {
-          invoiceHash: invoice_hash,
-          uuid: egs_uuid,
-          invoice: Buffer.from(signed_xml_string).toString("base64"),
-        },
-        { headers: { ...auth_headers, ...headers } }
-      );
+      try {
+        const response = await axios.post(
+          `${settings.SANDBOX_BASEURL}/compliance/invoices`,
+          {
+            invoiceHash: invoice_hash,
+            uuid: egs_uuid,
+            invoice: Buffer.from(signed_xml_string).toString("base64"),
+          },
+          { headers: { ...auth_headers, ...headers } }
+        );
+        console.log(response.data);
+        if (response.status != 200)
+          throwErrorObject({
+            message: "Error in compliance check.",
+          });
 
-      if (response.status != 200) throw new Error("Error in compliance check.");
-      return response.data;
+        return response.data;
+      } catch (error) {
+        console.log(error.response.data);
+        throwErrorObject({
+          Statcode: error.response.status,
+          ...error.response.data,
+        });
+      }
     };
 
     return {

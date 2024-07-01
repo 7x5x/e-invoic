@@ -12,6 +12,8 @@ import moment from "moment";
 import { EGSUnitSchema, egs_unit } from "./schema/EGSUnit_info_schema.js";
 import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
+import { throwErrorObject } from "../lib/errorType.js";
+import { saveInvoice } from "../lib/removeChars.js";
 
 /* GET home page. */
 export const newEGSRouter = async (req, res) => {
@@ -21,19 +23,21 @@ export const newEGSRouter = async (req, res) => {
   try {
     return res.status(200).json(await new_egs(egs_unit));
   } catch (error) {
-    return res.status(400).json(error);
+    return res.status(error.Statcode || 500).json(error);
   }
 };
+
+const currentDate = new Date();
+const futureDate = moment(currentDate).add(5, "days");
 
 const tempInvoice: any = {
   invoice_counter_number: 1,
   invoice_serial_number: "EGS1-886431145-1",
-  PrepaidAmount: 0,
   documentCurrencyCode: DocumentCurrencyCode.SAR,
   payment_method: ZATCAPaymentMethods.CASH,
   issue_date: moment(new Date()).format("YYYY-MM-DD"),
-  delivery_date: moment(new Date()).format("YYYY-MM-DD"),
-  issue_time: moment(new Date()).format("YYYY-MM-DD"),
+  delivery_date: futureDate.format("YYYY-MM-DD"),
+  issue_time: moment(new Date()).format("HH:mm:ss"),
   previous_invoice_hash:
     "NWZlY2ViNjZmZmM4NmYzOGQ5NTI3ODZjNmQ2OTZjNzljMmRiYzIzOWRkNGU5MWI0NjcyOWQ3M2EyN2ZiNTdlOQ==",
   line_items: [
@@ -110,13 +114,11 @@ const new_egs = async (data: egs_unit) => {
     compliance_request_id = await egs.issueComplianceCertificate(data.otp);
 
     for (const invoice of invoices) {
-      const { signed_invoice_string, invoice_hash, qr } =
-        egs.signInvoice(invoice);
-
+      const { signed_invoice_string, invoice_hash } = egs.signInvoice(invoice);
       await egs.checkInvoiceCompliance(signed_invoice_string, invoice_hash);
     }
 
-    const productionData = await {
+    const productionData = {
       productionData: await egs.issueProductionCertificate(
         compliance_request_id
       ),

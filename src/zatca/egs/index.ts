@@ -226,7 +226,6 @@ export class EGS {
     this.egs_info.production_certificate = issued_data.issued_certificate;
     this.egs_info.production_api_secret = issued_data.api_secret;
     return issued_data;
-    // return issued_data.request_id;
   }
 
   async checkInvoiceCompliance(
