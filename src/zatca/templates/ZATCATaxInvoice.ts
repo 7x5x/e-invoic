@@ -221,7 +221,7 @@ export class ZATCATaxInvoice {
         // BR-DEC-19
         "cbc:TaxableAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxable_amount.toFixed(2),
+          "#text": 20+taxable_amount.toFixed(2),
         },
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
