@@ -69,6 +69,6 @@ export const main = async (data: ZATCATaxInvoiceSchemaType) => {
       invoiceID: data.props.invoice_serial_number,
     };
   } catch (error: any) {
-    throw { ...error, qr };
+    throw { ...error, qr, hash: invoice_hash };
   }
 };
