@@ -45,6 +45,8 @@ export const invoiceRouter = async (req: Request, res: Response) => {
 };
 
 export const main = async (data: ZATCATaxInvoiceSchemaType) => {
+  let signed_invoice_string, invoice_hash, qr;
+
   try {
     const invoice = new ZATCATaxInvoice({ props: { ...data.props } });
 
@@ -53,10 +55,10 @@ export const main = async (data: ZATCATaxInvoiceSchemaType) => {
       ...data.productionData,
     });
 
-    const { signed_invoice_string, invoice_hash, qr } = egs.signInvoice(
+    ({ signed_invoice_string, invoice_hash, qr } = egs.signInvoice(
       invoice,
       true
-    );
+    ));
 
     const res = await egs.clearanceInvoice(signed_invoice_string, invoice_hash);
 
@@ -67,6 +69,6 @@ export const main = async (data: ZATCATaxInvoiceSchemaType) => {
       invoiceID: data.props.invoice_serial_number,
     };
   } catch (error: any) {
-    throw error;
+    throw { ...error, qr };
   }
 };
