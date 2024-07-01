@@ -9,27 +9,7 @@ import defaultSimplifiedTaxInvoice, {
   ZATCAInvoiceLineItemDiscount,
 } from "./tax_invoice_template.js";
 
-declare global {
-  interface Number {
-    toFixedNoRounding: (n: number) => string;
-  }
-}
-
-Number.prototype.toFixedNoRounding = function (n: number) {
-  const reg = new RegExp("^-?\\d+(?:\\.\\d{0," + n + "})?", "g");
-  let m = this.toString().match(reg);
-  if (m?.length) {
-    const a = m[0];
-    const dot = a.indexOf(".");
-    if (dot === -1) {
-      return a + "." + "0".repeat(n);
-    }
-    const b = n - (a.length - dot) + 1;
-    return b > 0 ? a + "0".repeat(b) : a;
-  }
-  return "0.00";
-};
-
+ 
 export {
   ZATCAInvoiceLineItem,
   ZATCAInvoiceProps,
@@ -74,7 +54,7 @@ export class ZATCATaxInvoice {
     const VAT = {
       "cbc:ID": line_item.VAT_percent ? "S" : "O",
       "cbc:Percent": line_item.VAT_percent
-        ? (line_item.VAT_percent * 100).toFixedNoRounding(2)
+        ? (line_item.VAT_percent * 100).toFixed(2)
         : undefined,
       "cac:TaxScheme": {
         "cbc:ID": "VAT",
@@ -91,7 +71,7 @@ export class ZATCATaxInvoice {
         "cbc:Amount": {
           "@_currencyID": CurrencyCode,
           // BR-DEC-01
-          "#text": (discount.amount / line_item.quantity).toFixedNoRounding(2),
+          "#text": (discount.amount / line_item.quantity).toFixed(2),
         },
         "cbc:BaseAmount": {
           "@_currencyID": CurrencyCode,
@@ -101,40 +81,28 @@ export class ZATCATaxInvoice {
       });
     });
 
-    // Calc item subtotal
-    // let line_item_subtotal = line_item.tax_exclusive_price * line_item.quantity;
-    // line_item_subtotal = parseFloat(line_item_subtotal.toFixedNoRounding(2));
+ 
 
     let line_item_subtotal =
       line_item.tax_exclusive_price * line_item.quantity -
       line_item_total_discounts;
-    line_item_subtotal = parseFloat(line_item_subtotal.toFixedNoRounding(2));
+    line_item_subtotal = parseFloat(line_item_subtotal.toFixed(2));
 
     // Calc total taxes
     // BR-KSA-DEC-02
 
     line_item_total_taxes =
-      parseFloat(line_item_total_taxes.toFixedNoRounding(2)) +
-      parseFloat(
-        (line_item_subtotal * line_item.VAT_percent).toFixedNoRounding(2)
-      );
-
-    line_item_total_taxes = parseFloat(
-      line_item_total_taxes.toFixedNoRounding(2)
-    );
+      line_item_total_taxes + line_item_subtotal * line_item.VAT_percent;
 
     // BR-KSA-DEC-03, BR-KSA-51
     cacTaxTotal = {
       "cbc:TaxAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": line_item_total_taxes.toFixedNoRounding(2),
+        "#text": line_item_total_taxes.toFixed(2),
       },
       "cbc:RoundingAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (
-          parseFloat(line_item_subtotal.toFixedNoRounding(2)) +
-          parseFloat(line_item_total_taxes.toFixedNoRounding(2))
-        ).toFixed(2),
+        "#text": (line_item_subtotal + line_item_total_taxes).toFixed(2),
       },
     };
 
@@ -173,7 +141,7 @@ export class ZATCATaxInvoice {
         // BR-DEC-23
         "cbc:LineExtensionAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": line_item_total_tax_exclusive.toFixedNoRounding(2),
+          "#text": line_item_total_tax_exclusive.toFixed(2),
         },
         "cac:TaxTotal": cacTaxTotal,
         "cac:Item": {
@@ -209,19 +177,17 @@ export class ZATCATaxInvoice {
       // BR-DEC-09    total invoice LineItem befor VAT or discount
       "cbc:LineExtensionAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (
-          tax_exclusive_subtotal + invoice_level_discount
-        ).toFixedNoRounding(2),
+        "#text": (tax_exclusive_subtotal + invoice_level_discount).toFixed(2),
       },
       //BR-DEC-12 total invoice LineItem with  discount befor VAT
       "cbc:TaxExclusiveAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": tax_exclusive_subtotal.toFixedNoRounding(2),
+        "#text": tax_exclusive_subtotal.toFixed(2),
       },
       // BR-DEC-14, BT-112 final price the customer needs to pay(base price and the applicable VAT),
       "cbc:TaxInclusiveAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": parseFloat((tax_exclusive_subtotal + taxes_total).toFixed(2)),
+        "#text": (tax_exclusive_subtotal + taxes_total).toFixed(2),
       },
       "cbc:AllowanceTotalAmount": {
         "@_currencyID": CurrencyCode,
@@ -229,13 +195,12 @@ export class ZATCATaxInvoice {
       },
       "cbc:PrepaidAmount": {
         "@_currencyID": CurrencyCode,
-        "#text":
-          PrepaidAmount != null ? PrepaidAmount.toFixedNoRounding(2) : 0.0,
+        "#text": PrepaidAmount != null ? PrepaidAmount.toFixed(2) : 0.0,
       },
       // BR-DEC-18, BT-112
       "cbc:PayableAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": parseFloat((tax_exclusive_subtotal + taxes_total).toFixed(2)),
+        "#text": (tax_exclusive_subtotal + taxes_total).toFixed(2),
       },
     };
   };
@@ -256,11 +221,11 @@ export class ZATCATaxInvoice {
         // BR-DEC-19
         "cbc:TaxableAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxable_amount.toFixedNoRounding(2),
+          "#text": taxable_amount.toFixed(2),
         },
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": tax_amount.toFixedNoRounding(2),
+          "#text": tax_amount.toFixed(2),
         },
         "cac:TaxCategory": {
           "cbc:ID": {
@@ -268,7 +233,7 @@ export class ZATCATaxInvoice {
             "@_schemeID": "UN/ECE 5305",
             "#text": tax_percent ? "S" : "O",
           },
-          "cbc:Percent": (tax_percent * 100).toFixedNoRounding(2),
+          "cbc:Percent": (tax_percent * 100).toFixed(2),
           // BR-O-10
           "cbc:TaxExemptionReason": tax_percent
             ? undefined
@@ -299,17 +264,16 @@ export class ZATCATaxInvoice {
 
       let tax_amount = line_item.VAT_percent * item_taxable_amount;
 
-      taxes_total += parseFloat(tax_amount.toFixedNoRounding(2));
+      taxes_total += tax_amount;
     });
 
     addTaxSubtotal(taxable_amount, taxes_total, line_items[0].VAT_percent);
-    taxes_total = parseFloat(taxes_total.toFixed(2));
 
     return [
       {
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxes_total.toFixedNoRounding(2),
+          "#text": taxes_total.toFixed(2),
         },
         "cac:TaxSubtotal": cacTaxSubtotal,
       },
@@ -319,9 +283,8 @@ export class ZATCATaxInvoice {
           "@_currencyID": "SAR",
           "#text":
             CurrencyCode != DocumentCurrencyCode.SAR
-              ? (taxes_total * conversion_rate).toFixedNoRounding(2) ??
-                (1).toFixedNoRounding(2)
-              : taxes_total.toFixedNoRounding(2),
+              ? (taxes_total * conversion_rate).toFixed(2) ?? (1).toFixed(2)
+              : taxes_total.toFixed(2),
         },
       },
     ];
@@ -349,7 +312,7 @@ export class ZATCATaxInvoice {
           "@_schemeID": "UN/ECE 5305",
           "#text": true ? "S" : "O",
         },
-        "cbc:Percent": (VAT_percent * 100).toFixedNoRounding(2),
+        "cbc:Percent": (VAT_percent * 100).toFixed(2),
         "cac:TaxScheme": {
           "cbc:ID": {
             "@_schemeAgencyID": "6",
@@ -383,31 +346,23 @@ export class ZATCATaxInvoice {
         line_item_total_discounts += total_discount.amount;
       });
 
-      total_taxes += parseFloat(
-        line_item_totals.taxes_total.toFixedNoRounding(2)
-      );
-      total_subtotal += parseFloat(
-        line_item_totals.subtotal.toFixedNoRounding(2)
-      );
+      total_taxes += line_item_totals.taxes_total;
+
+      total_subtotal += line_item_totals.subtotal;
 
       invoice_line_items.push(line_item_xml);
     });
 
     // BT-110
     props.invoice_level_discount
-      ? (total_taxes = parseFloat(
-          (
-            total_taxes -
-            props.invoice_level_discount.amount * line_items[0].VAT_percent
-          ).toFixed(2)
-        ))
-      : parseFloat(total_taxes.toFixed(2));
+      ? (total_taxes =
+          total_taxes -
+          props.invoice_level_discount.amount * line_items[0].VAT_percent)
+      : total_taxes;
 
     total_subtotal = props.invoice_level_discount
-      ? parseFloat(
-          (total_subtotal - props.invoice_level_discount.amount).toFixed(2)
-        )
-      : parseFloat(total_subtotal.toFixed(2));
+      ? total_subtotal - props.invoice_level_discount.amount
+      : total_subtotal;
 
     this.invoice_xml.set("Invoice/cac:Delivery", false, {
       "cbc:ActualDeliveryDate": props.delivery_date,
