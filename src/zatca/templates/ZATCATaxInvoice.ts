@@ -44,7 +44,7 @@ export class ZATCATaxInvoice {
     line_item: ZATCAInvoiceLineItem,
     CurrencyCode: DocumentCurrencyCode
   ) => {
-    let line_item_total_discounts = 0;
+    let line_item_discount = 0;
     let line_item_total_taxes = 0;
     let cacAllowanceCharges: any[] = [];
     let cacClassifiedTaxCategories: any[] = [];
@@ -61,16 +61,17 @@ export class ZATCATaxInvoice {
     };
     cacClassifiedTaxCategories.push(VAT);
 
-    // Calc total discounts
-    line_item.discounts?.map((discount) => {
-      line_item_total_discounts += discount.amount;
+    // Calc total discount
+    if (line_item.discount) {
+      line_item_discount = line_item.discount.amount;
+
       cacAllowanceCharges.push({
         "cbc:ChargeIndicator": "false",
-        "cbc:AllowanceChargeReason": discount.reason,
+        "cbc:AllowanceChargeReason": line_item.discount.reason,
         "cbc:Amount": {
           "@_currencyID": CurrencyCode,
           // BR-DEC-01
-          "#text": (discount.amount / line_item.quantity).toFixed(2),
+          "#text": (line_item_discount / line_item.quantity).toFixed(2),
         },
         "cbc:BaseAmount": {
           "@_currencyID": CurrencyCode,
@@ -78,11 +79,10 @@ export class ZATCATaxInvoice {
           "#text": line_item.tax_exclusive_price,
         },
       });
-    });
+    }
 
     let line_item_subtotal =
-      line_item.tax_exclusive_price * line_item.quantity -
-      line_item_total_discounts;
+      line_item.tax_exclusive_price * line_item.quantity - line_item_discount;
     line_item_subtotal = parseFloat(line_item_subtotal.toFixed(2));
 
     // Calc total taxes
@@ -109,7 +109,7 @@ export class ZATCATaxInvoice {
       cacTaxTotal,
       line_item_total_tax_exclusive: line_item_subtotal,
       line_item_total_taxes,
-      line_item_total_discounts,
+      line_item_discount,
     };
   };
 
@@ -123,7 +123,7 @@ export class ZATCATaxInvoice {
       cacTaxTotal,
       line_item_total_tax_exclusive,
       line_item_total_taxes,
-      line_item_total_discounts,
+      line_item_discount,
     } = this.constructLineItemTotals(line_item, CurrencyCode);
 
     return {
@@ -148,16 +148,17 @@ export class ZATCATaxInvoice {
         "cac:Price": {
           "cbc:PriceAmount": {
             "@_currencyID": CurrencyCode,
-            "#text":
+            "#text": (
               line_item.tax_exclusive_price -
-              line_item_total_discounts / line_item.quantity,
+              line_item_discount / line_item.quantity
+            ).toFixed(2),
           },
           "cac:AllowanceCharge": cacAllowanceCharges,
         },
       },
       line_item_totals: {
         taxes_total: line_item_total_taxes,
-        discounts_total: line_item_total_discounts,
+        discounts_total: line_item_discount,
         subtotal: line_item_total_tax_exclusive,
       },
     };
@@ -249,13 +250,12 @@ export class ZATCATaxInvoice {
     let taxes_total = 0;
     let taxable_amount = 0;
     line_items.map((line_item) => {
-      const total_line_item_discount = line_item.discounts?.reduce(
-        (p, c) => p + c.amount,
-        0
-      );
+      const total_line_item_discount = line_item.discount
+        ? line_item.discount.amount
+        : 0;
       const item_taxable_amount =
         line_item.tax_exclusive_price * line_item.quantity -
-        (total_line_item_discount ?? 0) -
+        total_line_item_discount -
         invoice_level_discount / line_items.length;
       taxable_amount += item_taxable_amount;
 
@@ -330,7 +330,6 @@ export class ZATCATaxInvoice {
   ) {
     let total_taxes: number = 0;
     let total_subtotal: number = 0;
-    let line_item_total_discounts: number = 0;
     let invoice_line_items: any[] = [];
 
     line_items.map((line_item) => {
@@ -338,10 +337,6 @@ export class ZATCATaxInvoice {
         line_item,
         props.documentCurrencyCode
       );
-
-      line_item.discounts?.map((total_discount) => {
-        line_item_total_discounts += total_discount.amount;
-      });
 
       total_taxes += line_item_totals.taxes_total;
 
@@ -366,7 +361,7 @@ export class ZATCATaxInvoice {
     });
 
     if (props.cancelation) {
-      // Invoice canceled. Tunred into credit/debit note. Must have PaymentMeans
+      // Invoice canceled. Turned into credit/debit note. Must have PaymentMeans
       this.invoice_xml.set("Invoice/cac:PaymentMeans", false, {
         "cbc:PaymentMeansCode": props.payment_method,
         "cbc:InstructionNote": props.cancelation.reason ?? "No note Specified",

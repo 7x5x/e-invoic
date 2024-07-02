@@ -3,6 +3,7 @@ import { cleanUpCertificateString } from "../signing/index.js";
 import fs from "fs";
 import { response } from "express";
 import { throwErrorObject } from "../../../lib/errorType.js";
+import { saveInvoice } from "../../../lib/removeChars.js";
 const settings = {
   API_VERSION: "V2",
   SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/simulation",
@@ -224,10 +225,13 @@ class API {
           },
           { headers: { ...auth_headers, ...headers } }
         );
-
         if (response.status === 200) return response.data;
         throwErrorObject(response);
       } catch (error) {
+        saveInvoice(
+          "filename.xml",
+          Buffer.from(signed_xml_string).toString("base64")
+        );
         error.status === 202
           ? throwErrorObject({
               Statcode: error.status,

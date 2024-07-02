@@ -129,7 +129,7 @@ export interface ZATCAInvoiceLineItem {
   quantity: number;
   Penalty?: ZATCAInvoiceLineItemDiscount[];
   tax_exclusive_price: number;
-  discounts?: ZATCAInvoiceLineItemDiscount[];
+  discount?: ZATCAInvoiceLineItemDiscount;
   VAT_percent?: number;
 }
 export interface ZATCAInvoicCancelation {

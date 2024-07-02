@@ -138,12 +138,10 @@ const ZATCAInvoiceLineItemSchema = {
     quantity: { type: "number", example: 1 },
     tax_exclusive_price: { type: "number", example: 7500 },
     VAT_percent: { type: "number", example: 0.15 },
-    discounts: [
-      {
-        reason: { type: "string", example: "reason" },
-        amount: { type: "number", example: 250 },
-      },
-    ],
+    discount: {
+      reason: { type: "string", example: "reason" },
+      amount: { type: "number", example: 250 },
+    },
   },
 };
 const productionData = {
