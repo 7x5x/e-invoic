@@ -127,7 +127,7 @@ export interface ZATCAInvoiceLineItem {
   name: string;
   notes?: string[];
   quantity: number;
-  Penalty?: ZATCAInvoiceLineItemDiscount[];
+  penalty?: ZATCAInvoiceLineItemDiscount;
   tax_exclusive_price: number;
   discount?: ZATCAInvoiceLineItemDiscount;
   VAT_percent?: number;
