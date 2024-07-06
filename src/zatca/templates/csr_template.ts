@@ -31,7 +31,7 @@ req_extensions = v3_req
 #basicConstraints=CA:FALSE
 #keyUsage = digitalSignature, keyEncipherment
 # Production or Testing Template (TSTZATCA-Code-Signing - ZATCA-Code-Signing)
-1.3.6.1.4.1.311.20.2 = ASN1:PRINTABLESTRING:PREZATCA-Code-Signing
+1.3.6.1.4.1.311.20.2 = ASN1:PRINTABLESTRING:ZATCA-Code-Signing
 subjectAltName=dirName:dir_sect
 
 [ dir_sect ]

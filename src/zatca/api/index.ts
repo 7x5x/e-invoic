@@ -6,8 +6,7 @@ import { throwErrorObject } from "../../../lib/errorType.js";
 import { saveInvoice } from "../../../lib/removeChars.js";
 const settings = {
   API_VERSION: "V2",
-  SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/simulation",
-  // "https://gw-apic-gov.gazt.gov.sa/e-invoicing/developer-portal",
+  SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core",
   PRODUCTION_BASEURL: "TODO",
 };
 
