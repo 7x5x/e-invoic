@@ -10,10 +10,7 @@ import {
 } from "../src/zatca/templates/ZATCATaxInvoice.js";
 import moment from "moment";
 import { EGSUnitSchema, egs_unit } from "./schema/EGSUnit_info_schema.js";
-import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
-import { throwErrorObject } from "../lib/errorType.js";
-import { saveInvoice } from "../lib/removeChars.js";
 
 /* GET home page. */
 export const newEGSRouter = async (req, res) => {

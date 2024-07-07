@@ -8,17 +8,22 @@ import {
   ZATCATaxInvoiceSchemaType,
 } from "./schema/invice_schemas.js";
 import { saveInvoice } from "../lib/removeChars.js";
+import { log } from "../src/logger/index.js";
 
 export const invoiceRouter = async (req: Request, res: Response) => {
   const { error, value } = ZATCATaxInvoiceSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
-
+  log(
+    "Info",
+    "invoiceRouter",
+    `invoice numbere:  ${value.props.invoice_serial_number}`
+  );
   const issue_date = moment(new Date()).format("YYYY-MM-DD");
   const issue_time = moment(new Date()).format("HH:mm:ss");
 
   value.props.issue_date = issue_date;
   value.props.issue_time = issue_time;
-
+  
   const filename = `${value.props.egs_info.CRN_number}_${issue_date}T${issue_time}_${value.props.invoice_counter_number}.xml`;
 
   try {
@@ -33,11 +38,13 @@ export const invoiceRouter = async (req: Request, res: Response) => {
       value.productionData.production_certificate,
       "base64"
     ).toString();
+
     const result = await main(value);
     saveInvoice(filename, result.clearedInvoice);
     return res.status(200).json(result);
   } catch (error) {
     error.Statcode === 202 && saveInvoice(filename, error.clearedInvoice);
+
     return res
       .status(error.Statcode || 500)
       .json({ ...error, invoiceID: value.props.invoice_serial_number });
@@ -69,6 +76,8 @@ export const main = async (data: ZATCATaxInvoiceSchemaType) => {
       invoiceID: data.props.invoice_serial_number,
     };
   } catch (error: any) {
-    throw { ...error, qr, hash: invoice_hash };
+    const hash =
+      error.Statcode === 202 ? invoice_hash : data.props.previous_invoice_hash;
+    throw { ...error, qr, hash };
   }
 };

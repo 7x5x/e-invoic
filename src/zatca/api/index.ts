@@ -1,9 +1,8 @@
 import axios from "axios";
-import { cleanUpCertificateString } from "../signing/index.js";
-import fs from "fs";
-import { response } from "express";
-import { throwErrorObject } from "../../../lib/errorType.js";
-import { saveInvoice } from "../../../lib/removeChars.js";
+import { cleanUpCertificateString } from "../signing/index.js"; 
+import { throwErrorObject } from "../../../lib/errorType.js"; 
+import { log } from "../../logger/index.js";
+import { handleInvoiceError } from "./handelError.js";
 const settings = {
   API_VERSION: "V2",
   SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core",
@@ -224,24 +223,18 @@ class API {
           },
           { headers: { ...auth_headers, ...headers } }
         );
-        if (response.status === 200) return response.data;
-        throwErrorObject(response);
+        if (response.status === 200) {
+          log(
+            "Info",
+            "clearedInvoice",
+            `Invoice cleared successfully:  ${invoice_hash}`
+          );
+          return response.data;
+        }
+
+        throwErrorObject(response, false);
       } catch (error) {
-        saveInvoice(
-          "filename.xml",
-          Buffer.from(signed_xml_string).toString("base64")
-        );
-        error.status === 202
-          ? throwErrorObject({
-              Statcode: error.status,
-              ...error.data,
-            })
-          : throwErrorObject({
-              Statcode: error.response.status,
-              ...(error.response.status === 401
-                ? { message: "Unauthorized" }
-                : error.response.data),
-            });
+        handleInvoiceError(error, signed_xml_string, invoice_hash);
       }
     };
 
