@@ -10,7 +10,7 @@ import http from "http";
 
 const debugLog = debug("invoice:server");
 
-const port = normalizePort(process.env.PORT || "8001");
+const port = normalizePort(process.env.PORT || "8002");
 app.set("port", port);
 
 const server = http.createServer(app);
