@@ -9,6 +9,23 @@ import defaultSimplifiedTaxInvoice, {
   ZATCAInvoiceLineItemDiscount,
 } from "./tax_invoice_template.js";
 
+declare global {
+  interface Number {
+    toFixedHalfUp: (n: number) => string;
+  }
+}
+
+Number.prototype.toFixedHalfUp = function (n: number) {
+  const shiftedValue = this * 1000;
+  const integerPart = Math.floor(shiftedValue);
+  const thirdDecimal = integerPart % 10;
+  const shouldRoundUp = thirdDecimal >= 5;
+  const newShiftedValue = shouldRoundUp
+    ? Math.ceil(shiftedValue / 10)
+    : Math.floor(shiftedValue / 10);
+  return (newShiftedValue / 100).toFixed(2);
+};
+
 export {
   ZATCAInvoiceLineItem,
   ZATCAInvoiceProps,
@@ -53,7 +70,7 @@ export class ZATCATaxInvoice {
     const VAT = {
       "cbc:ID": line_item.VAT_percent ? "S" : "O",
       "cbc:Percent": line_item.VAT_percent
-        ? (line_item.VAT_percent * 100).toFixed(2)
+        ? (line_item.VAT_percent * 100).toFixedHalfUp(2)
         : undefined,
       "cac:TaxScheme": {
         "cbc:ID": "VAT",
@@ -75,7 +92,7 @@ export class ZATCATaxInvoice {
         "cbc:Amount": {
           "@_currencyID": CurrencyCode,
           // BR-DEC-01
-          "#text": line_item_discount.toFixed(2),
+          "#text": line_item_discount.toFixedHalfUp(2),
         },
       });
     }
@@ -97,11 +114,11 @@ export class ZATCATaxInvoice {
     cacTaxTotal = {
       "cbc:TaxAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": line_item_total_taxes.toFixed(2),
+        "#text": line_item_total_taxes.toFixedHalfUp(2),
       },
       "cbc:RoundingAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (line_item_subtotal + line_item_total_taxes).toFixed(2),
+        "#text": (line_item_subtotal + line_item_total_taxes).toFixedHalfUp(2),
       },
     };
 
@@ -140,7 +157,7 @@ export class ZATCATaxInvoice {
         // BR-DEC-23
         "cbc:LineExtensionAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": line_item_total_tax_exclusive.toFixed(2),
+          "#text": line_item_total_tax_exclusive.toFixedHalfUp(2),
         },
         "cac:AllowanceCharge": cacAllowanceCharges,
         "cac:TaxTotal": cacTaxTotal,
@@ -151,7 +168,7 @@ export class ZATCATaxInvoice {
         "cac:Price": {
           "cbc:PriceAmount": {
             "@_currencyID": CurrencyCode,
-            "#text": line_item.tax_exclusive_price.toFixed(2),
+            "#text": line_item.tax_exclusive_price,
           },
         },
       },
@@ -174,17 +191,17 @@ export class ZATCATaxInvoice {
       // BR-DEC-09    total invoice LineItem befor VAT or discount
       "cbc:LineExtensionAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + invoice_level_discount).toFixed(2),
+        "#text": (tax_exclusive_subtotal + invoice_level_discount).toFixedHalfUp(2),
       },
       //BR-DEC-12 total invoice LineItem with  discount befor VAT
       "cbc:TaxExclusiveAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": tax_exclusive_subtotal.toFixed(2),
+        "#text": tax_exclusive_subtotal.toFixedHalfUp(2),
       },
       // BR-DEC-14, BT-112 final price the customer needs to pay(base price and the applicable VAT),
       "cbc:TaxInclusiveAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + taxes_total).toFixed(2),
+        "#text": (tax_exclusive_subtotal + taxes_total).toFixedHalfUp(2),
       },
       "cbc:AllowanceTotalAmount": {
         "@_currencyID": CurrencyCode,
@@ -192,12 +209,12 @@ export class ZATCATaxInvoice {
       },
       "cbc:PrepaidAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": PrepaidAmount != null ? PrepaidAmount.toFixed(2) : 0.0,
+        "#text": PrepaidAmount != null ? PrepaidAmount.toFixedHalfUp(2) : 0.0,
       },
       // BR-DEC-18, BT-112
       "cbc:PayableAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + taxes_total).toFixed(2),
+        "#text": (tax_exclusive_subtotal + taxes_total).toFixedHalfUp(2),
       },
     };
   };
@@ -218,11 +235,11 @@ export class ZATCATaxInvoice {
         // BR-DEC-19
         "cbc:TaxableAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxable_amount.toFixed(2),
+          "#text": taxable_amount.toFixedHalfUp(2),
         },
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": tax_amount.toFixed(2),
+          "#text": tax_amount.toFixedHalfUp(2),
         },
         "cac:TaxCategory": {
           "cbc:ID": {
@@ -230,7 +247,7 @@ export class ZATCATaxInvoice {
             "@_schemeID": "UN/ECE 5305",
             "#text": tax_percent ? "S" : "O",
           },
-          "cbc:Percent": (tax_percent * 100).toFixed(2),
+          "cbc:Percent": (tax_percent * 100).toFixedHalfUp(2),
           // BR-O-10
           "cbc:TaxExemptionReason": tax_percent
             ? undefined
@@ -269,7 +286,7 @@ export class ZATCATaxInvoice {
       {
         "cbc:TaxAmount": {
           "@_currencyID": CurrencyCode,
-          "#text": taxes_total.toFixed(2),
+          "#text": taxes_total.toFixedHalfUp(2),
         },
         "cac:TaxSubtotal": cacTaxSubtotal,
       },
@@ -277,10 +294,10 @@ export class ZATCATaxInvoice {
         // TaxAmount must be SAR even if the invoice is USD
         "cbc:TaxAmount": {
           "@_currencyID": "SAR",
-          "#text":
-            CurrencyCode != DocumentCurrencyCode.SAR
-              ? (taxes_total * conversion_rate).toFixed(2) ?? (1).toFixed(2)
-              : taxes_total.toFixed(2),
+          "#text": (CurrencyCode != DocumentCurrencyCode.SAR
+            ? taxes_total * conversion_rate
+            : taxes_total
+          ).toFixedHalfUp(2),
         },
       },
     ];
@@ -308,7 +325,7 @@ export class ZATCATaxInvoice {
           "@_schemeID": "UN/ECE 5305",
           "#text": true ? "S" : "O",
         },
-        "cbc:Percent": (VAT_percent * 100).toFixed(2),
+        "cbc:Percent": (VAT_percent * 100).toFixedHalfUp(2),
         "cac:TaxScheme": {
           "cbc:ID": {
             "@_schemeAgencyID": "6",

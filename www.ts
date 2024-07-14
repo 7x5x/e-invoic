@@ -10,7 +10,7 @@ import http from "http";
 
 const debugLog = debug("invoice:server");
 
-const port = normalizePort(process.env.PORT || "8002");
+const port = normalizePort(process.env.PORT || "8001");
 app.set("port", port);
 
 const server = http.createServer(app);
@@ -19,7 +19,6 @@ server.listen(port);
 
 server.on("error", onError);
 server.on("listening", onListening);
-
 
 function normalizePort(val: string): number | string | boolean {
   const port = parseInt(val, 10);
