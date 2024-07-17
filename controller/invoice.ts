@@ -15,15 +15,16 @@ export const invoiceRouter = async (req: Request, res: Response) => {
   if (error) return res.status(400).json({ error: error.details[0].message });
   log(
     "Info",
-    "invoiceRouter",
-    `invoice numbere:  ${value.props.invoice_serial_number}`
+
+    `invoice numbere:  ${value.props.invoice_serial_number}`,
+    `PIH:  ${value.props.previous_invoice_hash}`
   );
   const issue_date = moment(new Date()).format("YYYY-MM-DD");
   const issue_time = moment(new Date()).format("HH:mm:ss");
 
   value.props.issue_date = issue_date;
   value.props.issue_time = issue_time;
-  
+
   const filename = `${value.props.egs_info.CRN_number}_${issue_date}T${issue_time}_${value.props.invoice_counter_number}.xml`;
 
   try {

@@ -14,7 +14,7 @@ export const log = (type: string, source: string, message: string) => {
     fs.renameSync(LOG_FILE, `${LOG_FILE}.old`);
   }
 
-  if (source === "invoiceRouter") {
+  if (source.includes("invoice numbere")) {
     fs.appendFile(LOG_FILE, "\n", (err) => {
       if (err) {
         console.error("Error writing new line to log file:", err);

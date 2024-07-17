@@ -9,21 +9,21 @@ import defaultSimplifiedTaxInvoice, {
   ZATCAInvoiceLineItemDiscount,
 } from "./tax_invoice_template.js";
 
+import { Decimal } from "decimal.js";
+
+// Set the rounding mode to ROUND_UP globally
+Decimal.set({ rounding: Decimal.ROUND_UP });
+
 declare global {
   interface Number {
     toFixedHalfUp: (n: number) => string;
   }
 }
 
-Number.prototype.toFixedHalfUp = function (n: number) {
-  const shiftedValue = this * 1000;
-  const integerPart = Math.floor(shiftedValue);
-  const thirdDecimal = integerPart % 10;
-  const shouldRoundUp = thirdDecimal >= 5;
-  const newShiftedValue = shouldRoundUp
-    ? Math.ceil(shiftedValue / 10)
-    : Math.floor(shiftedValue / 10);
-  return (newShiftedValue / 100).toFixed(2);
+Number.prototype.toFixedHalfUp = function (n: number): string {
+  const decimalNumber = new Decimal(this);
+  const rounded = decimalNumber.toDecimalPlaces(n, Decimal.ROUND_UP); // Rounds up based on the nth decimal place
+  return rounded.toFixed(2);
 };
 
 export {
