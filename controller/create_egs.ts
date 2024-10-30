@@ -51,7 +51,7 @@ const tempInvoice: any = {
 
 const customer: ZatcaCustomerInfo = {
   NAT_number: "311111111111113",
-  PartyTaxScheme: "strings11111111111",
+  // PartyTaxScheme: "strings11111111111",
   RegistrationName: "Acme Widget’s LTD 2",
   location: {
     Street: "الرياض",

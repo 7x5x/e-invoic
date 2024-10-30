@@ -31,6 +31,7 @@ const Location = {
     },
   },
 };
+
 const EGSUnit = {
   type: "object",
   properties: {
@@ -65,6 +66,7 @@ const EGSUnit = {
     location: Location,
   },
 };
+
 const EGS_UNIT = {
   type: "object",
   properties: {
@@ -91,10 +93,14 @@ const Cancelation = {
     },
     cancelation_type: {
       type: "string",
-      enum: ["10", "Type2", "Type3"],
+      enum: ["388", "383", "381"],
+
+      description:
+        'Possible values: INVOICE = "388", DEBIT_NOTE = "383", CREDIT_NOTE = "381"',
     },
   },
 };
+
 const EGSUnitInfoSchema = {
   type: "object",
   properties: {
@@ -117,76 +123,89 @@ const EGSUnitInfoSchema = {
         city_subdivision: { type: "string", example: "Al-hazm Dist" },
         street: { type: "string", example: "street street st" },
         plot_identification: { type: "string", example: "4167" },
-        building: { type: "number", example: "6602" },
+        building: { type: "number", example: 6602 },
         postal_zone: { type: "string", example: "32714" },
       },
     },
   },
 };
+
 const ZatcaCustomerInfoSchema = {
   type: "object",
   properties: {
-    // Define properties for ZatcaCustomerInfoSchema here
+    NAT_number: {
+      type: "string",
+      example: "311111111111113",
+    },
+    location: {
+      type: "object",
+      properties: {
+        Street: { type: "string", example: "الرياض" },
+        BuildingNumber: { type: "number", example: 1111 },
+        PlotIdentification: { type: "number", example: 2223 },
+        CitySubdivisionName: { type: "string", example: "الرياض" },
+        CityName: { type: "string", example: "الدمام | Dammam" },
+        PostalZone: { type: "number", example: 12222 },
+      },
+    },
+    // PartyTaxScheme: { type: "string", example: "strings11111111111" },
+    RegistrationName: { type: "string", example: "Acme Widget’s LTD 2" },
   },
 };
+
 const ZATCAInvoiceLineItemSchema = {
   type: "object",
   properties: {
     id: { type: "number", example: 1 },
-    name: { type: "string", example: "producat name" },
-    note: { type: "string" },
-    quantity: { type: "number", example: 1 },
-    tax_exclusive_price: { type: "number", example: 7500 },
-    VAT_percent: { type: "number", example: 0.15 },
-    discount: {
-      reason: { type: "string", example: "reason" },
-      amount: { type: "number", example: 250 },
+    name: { type: "string", example: "Tube 2.50 Mtr" },
+    notes: {
+      type: "array",
+      items: { type: "string", example: "note" },
     },
+    quantity: { type: "number", example: 1 },
+    tax_exclusive_price: { type: "number", example: 1803.5 },
+    VAT_percent: { type: "number", example: 0.15 },
   },
 };
+
 const productionData = {
   type: "object",
   properties: {
     private_key: {
       type: "string",
+      example: "LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IUUNBU...",
     },
     production_certificate: {
       type: "string",
+      example: "TUlJRlBUQ0NCT1N...",
     },
     production_api_secret: {
       type: "string",
+      example: "hs57qtWbsn3+0pLrGoo/By3EIWKtBr4JV/mHzR+Ng6U=",
     },
   },
 };
+
 const ZATCAInvoiceProps = {
   type: "object",
   properties: {
     egs_info: EGSUnitInfoSchema,
     customerInfo: ZatcaCustomerInfoSchema,
-    invoice_counter_number: {
-      type: "number",
-    },
-    invoice_serial_number: {
-      type: "string",
-    },
-    conversion_rate: {
-      type: "number",
-    },
-    delivery_date: {
-      type: "string",
-      example: "2024-07-13",
-    },
+    invoice_counter_number: { type: "number" },
+    invoice_serial_number: { type: "string" },
+    conversion_rate: { type: "number" },
+    delivery_date: { type: "string", example: "2024-07-13" },
     documentCurrencyCode: {
       type: "string",
       enum: ["USD", "EUR", "GBP"],
     },
     payment_method: {
       type: "string",
-      enum: ["CASH = 10", "CREDIT=30", "BANK_ACCOUNT=42", "BANK_CARD=48"],
+      enum: ["10", "30", "42", "48"],
+      description:
+        'Possible values: CASH = "10", CREDIT = "30", BANK_ACCOUNT = "42", BANK_CARD = "48"',
     },
-    previous_invoice_hash: {
-      type: "string",
-    },
+    previous_invoice_hash: { type: "string" },
     cancelation: Cancelation,
     line_items: {
       type: "array",
@@ -208,6 +227,7 @@ const ZATCAInvoiceProps = {
     "line_items",
   ],
 };
+
 const ZATCATaxInvoiceSchemaType = {
   type: "object",
   properties: {
@@ -280,7 +300,6 @@ const swaggerOptions: Options = {
       title: "ZATCA Tax Invoice API",
       version: "1.0.0",
     },
-
     paths: {
       "/new_egs": {
         post: {
@@ -313,7 +332,7 @@ const swaggerOptions: Options = {
           },
         },
       },
-      "/ivoice": {
+      "/invoice": {
         post: {
           summary: "ZATCA Tax Invoice API",
           consumes: ["application/json"],
@@ -342,6 +361,7 @@ const swaggerOptions: Options = {
               description: "Internal server error",
             },
           },
+         
         },
       },
     },
@@ -353,7 +373,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 function swaggerDoc(app: Express) {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  app.get("docs.json", (req: Request, res: Response) => {
+  app.get("/docs.json", (req: Request, res: Response) => {
     res.setHeader("content-Type", "application/json");
     res.send(swaggerSpec);
   });

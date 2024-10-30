@@ -129,6 +129,7 @@ export interface ZATCAInvoiceLineItem {
   quantity: number;
   penalty?: ZATCAInvoiceLineItemDiscount;
   tax_exclusive_price: number;
+  unitCode?: string;
   discount?: ZATCAInvoiceLineItemDiscount;
   VAT_percent?: number;
 }
@@ -140,7 +141,7 @@ export interface ZATCAInvoicCancelation {
 export interface ZatcaCustomerInfo {
   NAT_number: string;
   location: CustomerLocation;
-  PartyTaxScheme: string;
+  // PartyTaxScheme: string;
   RegistrationName: string;
 }
 
@@ -156,6 +157,8 @@ export enum DocumentCurrencyCode {
   SAR = "SAR",
   USD = "USD",
   EUR = "EUR",
+  AED = "AED",
+  BHD = "BHD",
 }
 export interface productionCSID {
   issued_certificate: string;

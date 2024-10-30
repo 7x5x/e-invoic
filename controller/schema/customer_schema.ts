@@ -16,7 +16,7 @@ export const CustomerLocationSchema = Joi.object<CustomerLocation>({
 export const ZatcaCustomerInfoSchema = Joi.object<ZatcaCustomerInfo>({
   NAT_number: Joi.string().required(),
   location: CustomerLocationSchema,
-  PartyTaxScheme: Joi.string().required(),
+  // PartyTaxScheme: Joi.string().required(),
   RegistrationName: Joi.string().required(),
 });
 

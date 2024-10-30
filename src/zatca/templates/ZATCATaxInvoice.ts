@@ -108,7 +108,7 @@ export class ZATCATaxInvoice {
     line_item_total_taxes =
       line_item_total_taxes +
       (line_item_subtotal + (line_item.penalty?.amount || 0)) *
-        line_item.VAT_percent;
+      line_item.VAT_percent;
 
     // BR-KSA-DEC-03, BR-KSA-51
     cacTaxTotal = {
@@ -118,7 +118,10 @@ export class ZATCATaxInvoice {
       },
       "cbc:RoundingAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (line_item_subtotal + line_item_total_taxes).toFixedHalfUp(2),
+        "#text": (
+          parseFloat(line_item_subtotal.toFixedHalfUp(2)) +
+          parseFloat(line_item_total_taxes.toFixedHalfUp(2))
+        ).toFixed(2),
       },
     };
 
@@ -151,7 +154,7 @@ export class ZATCATaxInvoice {
 
         "cbc:Note": line_item.notes,
         "cbc:InvoicedQuantity": {
-          "@_unitCode": "PCE",
+          "@_unitCode": line_item.unitCode ?? "PCE",
           "#text": line_item.quantity,
         },
         // BR-DEC-23
@@ -191,7 +194,9 @@ export class ZATCATaxInvoice {
       // BR-DEC-09    total invoice LineItem befor VAT or discount
       "cbc:LineExtensionAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + invoice_level_discount).toFixedHalfUp(2),
+        "#text": (
+          tax_exclusive_subtotal + invoice_level_discount
+        ).toFixedHalfUp(2),
       },
       //BR-DEC-12 total invoice LineItem with  discount befor VAT
       "cbc:TaxExclusiveAmount": {
@@ -201,7 +206,10 @@ export class ZATCATaxInvoice {
       // BR-DEC-14, BT-112 final price the customer needs to pay(base price and the applicable VAT),
       "cbc:TaxInclusiveAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + taxes_total).toFixedHalfUp(2),
+        "#text": (
+          parseFloat(tax_exclusive_subtotal.toFixedHalfUp(2)) +
+          parseFloat(taxes_total.toFixedHalfUp(2))
+        ).toFixed(2),
       },
       "cbc:AllowanceTotalAmount": {
         "@_currencyID": CurrencyCode,
@@ -214,7 +222,10 @@ export class ZATCATaxInvoice {
       // BR-DEC-18, BT-112
       "cbc:PayableAmount": {
         "@_currencyID": CurrencyCode,
-        "#text": (tax_exclusive_subtotal + taxes_total).toFixedHalfUp(2),
+        "#text": (
+          parseFloat(tax_exclusive_subtotal.toFixedHalfUp(2)) +
+          parseFloat(taxes_total.toFixedHalfUp(2))
+        ).toFixed(2),
       },
     };
   };
@@ -364,8 +375,8 @@ export class ZATCATaxInvoice {
     // BT-110
     props.invoice_level_discount
       ? (total_taxes =
-          total_taxes -
-          props.invoice_level_discount.amount * line_items[0].VAT_percent)
+        total_taxes -
+        props.invoice_level_discount.amount * line_items[0].VAT_percent)
       : total_taxes;
 
     total_subtotal = props.invoice_level_discount
