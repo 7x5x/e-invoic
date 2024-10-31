@@ -4,3 +4,4 @@
 /dist
 gg-token
 .gitignore
+.env
