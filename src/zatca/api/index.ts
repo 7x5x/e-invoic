@@ -5,8 +5,8 @@ import { log } from "../../logger/index.js";
 import { handleInvoiceError } from "./handelError.js";
 const settings = {
   API_VERSION: "V2",
-  // SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/simulation",
-  SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core",
+  SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/simulation",
+  // SANDBOX_BASEURL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core",
   PRODUCTION_BASEURL: "TODO",
 };
 
