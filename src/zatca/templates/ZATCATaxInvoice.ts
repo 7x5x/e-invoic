@@ -21,10 +21,21 @@ declare global {
 }
 
 Number.prototype.toFixedHalfUp = function (n: number): string {
-  const decimalNumber = new Decimal(this);
-  const rounded = decimalNumber.toDecimalPlaces(n, Decimal.ROUND_UP); // Rounds up based on the nth decimal place
-  return rounded.toFixed(2);
+  // Ensure `n` is a valid non-negative integer
+  if (!Number.isInteger(n) || n < 0) {
+    throw new Error("The argument must be a non-negative integer.");
+  }
+
+  // Convert the number to a Decimal instance
+  const decimalValue = new Decimal(this);
+
+  // Add 0.5 at the (n+1)-th decimal place
+  const factor = new Decimal(10).pow(n); // 10^n
+  const adjustedValue = decimalValue.times(factor).plus(0.5).floor().dividedBy(factor);
+
+  return adjustedValue.toFixed(n); // Format with `n` decimal places
 };
+
 
 export {
   ZATCAInvoiceLineItem,
