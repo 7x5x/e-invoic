@@ -42,7 +42,7 @@ export const invoiceRouter = async (req: Request, res: Response) => {
 
     const result = await main(value);
     saveInvoice(filename, result.clearedInvoice);
-    return res.status(200).json(result);
+    return res.status(200).json("result");
   } catch (error) {
     error.Statcode === 202 && saveInvoice(filename, error.clearedInvoice);
 
