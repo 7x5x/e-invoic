@@ -42,13 +42,26 @@ export const invoiceRouter = async (req: Request, res: Response) => {
 
     const result = await main(value);
     saveInvoice(filename, result.clearedInvoice);
-    return res.status(200).json(result);
+    // return res.status(200).json(result);
+    return res.status(200).json({
+      validationResults: result.validationResults,
+      clearanceStatus: result.clearanceStatus,
+      hash: result.hash,
+      qr: result.qr,
+      invoiceID: value.props.invoice_serial_number
+    });
   } catch (error) {
     error.Statcode === 202 && saveInvoice(filename, error.clearedInvoice);
 
     return res
       .status(error.Statcode || 500)
-      .json({ ...error, invoiceID: value.props.invoice_serial_number });
+      .json({
+        validationResults: error.validationResults,
+        clearanceStatus: error.clearanceStatus,
+        hash: error.hash,
+        qr: error.qr,
+        invoiceID: value.props.invoice_serial_number
+      });
   }
 };
 
