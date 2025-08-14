@@ -175,6 +175,7 @@ export interface productionData {
 export interface ZATCAInvoiceProps {
   egs_info: EGSUnitInfo;
   documentCurrencyCode: DocumentCurrencyCode;
+  invoiceType?: string;//temp
   conversion_rate?: number;
   payment_method: ZATCAPaymentMethods;
   customerInfo: ZatcaCustomerInfo;

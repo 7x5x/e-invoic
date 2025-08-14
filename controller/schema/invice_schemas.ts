@@ -27,6 +27,7 @@ const Supplier = Joi.object<EGSUnitInfo>({
 });
 const ZATCATaxInvoicePropsSchema = Joi.object<ZATCAInvoiceProps>({
   invoice_counter_number: Joi.number().required(),
+  invoiceType: Joi.string(),//temp
   conversion_rate: Joi.number().required(),
   invoice_serial_number: Joi.string().required(),
   delivery_date: Joi.string().required(),
