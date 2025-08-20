@@ -176,6 +176,7 @@ export interface ZATCAInvoiceProps {
   egs_info: EGSUnitInfo;
   documentCurrencyCode: DocumentCurrencyCode;
   conversion_rate?: number;
+  invoiceType: string;
   payment_method: ZATCAPaymentMethods;
   customerInfo: ZatcaCustomerInfo;
   invoice_counter_number: number;

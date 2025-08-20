@@ -40,11 +40,12 @@ const ZATCATaxInvoicePropsSchema = Joi.object<ZATCAInvoiceProps>({
       .required(),
   }).optional(),
   egs_info: Supplier.required(),
-  
+
   customerInfo: ZatcaCustomerInfoSchema.required(),
   documentCurrencyCode: Joi.string()
     .valid(...Object.values(DocumentCurrencyCode))
     .required(),
+  invoiceType: Joi.string().optional(),
   payment_method: Joi.string()
     .valid(...Object.values(ZATCAPaymentMethods))
     .required(),

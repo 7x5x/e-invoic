@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"><ext:UBLExtensions>
+    <ext:UBLExtension>
+        <ext:ExtensionURI>urn:oasis:names:specification:ubl:dsig:enveloped:xades</ext:ExtensionURI>
+        <ext:ExtensionContent>
+            <sig:UBLDocumentSignatures xmlns:sig="urn:oasis:names:specification:ubl:schema:xsd:CommonSignatureComponents-2" xmlns:sac="urn:oasis:names:specification:ubl:schema:xsd:SignatureAggregateComponents-2" xmlns:sbc="urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2">
+                <sac:SignatureInformation> 
+                    <cbc:ID>urn:oasis:names:specification:ubl:signature:1</cbc:ID>
+                    <sbc:ReferencedSignatureID>urn:oasis:names:specification:ubl:signature:Invoice</sbc:ReferencedSignatureID>
+                    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="signature">
+                        <ds:SignedInfo>
+                            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2006/12/xml-c14n11"/>
+                            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+                            <ds:Reference Id="invoiceSignedData" URI="">
+                                <ds:Transforms>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::ext:UBLExtensions)</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::cac:Signature)</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::cac:AdditionalDocumentReference[cbc:ID='QR'])</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11"/>
+                                </ds:Transforms>
+                                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                <ds:DigestValue>wDVcuQcJVUHfB689J/rlRbOn5KlNj0Ch6CA8AgzR7SU=</ds:DigestValue>
+                            </ds:Reference>
+                            <ds:Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#xadesSignedProperties">
+                                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                <ds:DigestValue>YmUwNDE1NWNmYmZjYTQ2YzY0MWY0M2NkNTIxZjczNjFhMjE5ZWQ1NDc2ZTgxZTc0NWM3ZjM0ZWIwMTJlODNmOA==</ds:DigestValue>
+                            </ds:Reference>
+                        </ds:SignedInfo>
+                        <ds:SignatureValue>MEQCIA0KIRi9ltlvR3Ee96W/KuHDadhLOCPRUa5Lhn9m0wWKAiBvtH4NBHreTT834i/on2Va7ZkIqtswgFdOlKFXFAvziQ==</ds:SignatureValue>
+                        <ds:KeyInfo>
+                            <ds:X509Data>
+                                <ds:X509Certificate>MIICGzCCAcECFBzuP72ESVPDTEDgJOUieD3ttGq5MAoGCCqGSM49BAMCMIGPMQswCQYDVQQGEwJTQTEPMA0GA1UECAwGUml5YWRoMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHjAcBgNVBAoMFVpBVENBIGVJbnZvaWNpbmcgUHJvZDEYMBYGA1UECwwPZUludm9pY2luZyBQcm9kMR4wHAYDVQQDDBV6YXRjYS1laW52b2ljaW5nLXByb2QwHhcNMjUwNTE5MTQyOTEyWhcNMjgwNDE4MTQyOTEyWjCBjzELMAkGA1UEBhMCU0ExDzANBgNVBAgMBlJpeWFkaDEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MR4wHAYDVQQKDBVaQVRDQSBlSW52b2ljaW5nIFByb2QxGDAWBgNVBAsMD2VJbnZvaWNpbmcgUHJvZDEeMBwGA1UEAwwVemF0Y2EtZWludm9pY2luZy1wcm9kMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqIi0vbIUezsNnMXbybvyLv+PVR+YyO8KZhOzCa1JZdoRyxdEbSSPkeKBHBVO45Z12izmffrzUe+kAKg39D72szAKBggqhkjOPQQDAgNIADBFAiEAlTrllsL95KjhXnQUemeY5vAZqFdoJ+GN9Gpl/HeBb3ACIALvcyKecV+B9vBXPoRt8Iv6GRwr51vwV6r0um9yNa12</ds:X509Certificate>
+                            </ds:X509Data>
+                        </ds:KeyInfo>
+                        <ds:Object>
+                            <xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Target="signature">
+                                <xades:SignedProperties Id="xadesSignedProperties">
+                                    <xades:SignedSignatureProperties>
+                                        <xades:SigningTime>2025-07-22T07:34:22</xades:SigningTime>
+                                        <xades:SigningCertificate>
+                                            <xades:Cert>
+                                                <xades:CertDigest>
+                                                    <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                                    <ds:DigestValue>MGE2ZjdhYmFmNzlmNDE3MDdhMmMzNzAxMjY0YWRhYjQ2NzliN2Y0Njk1Zjg3NWEyZmE5MDBmM2Q0NDI1ZjM2Nw==</ds:DigestValue>
+                                                </xades:CertDigest>
+                                                <xades:IssuerSerial>
+                                                    <ds:X509IssuerName>CN=zatca-einvoicing-prod, OU=eInvoicing Prod, O=ZATCA eInvoicing Prod, L=Default City, ST=Riyadh, C=SA</ds:X509IssuerName>
+                                                    <ds:X509SerialNumber>165164871503537675966491882910642908362769197753</ds:X509SerialNumber>
+                                                </xades:IssuerSerial>
+                                            </xades:Cert>
+                                        </xades:SigningCertificate>
+                                    </xades:SignedSignatureProperties>
+                                </xades:SignedProperties>
+                            </xades:QualifyingProperties>
+                        </ds:Object>
+                    </ds:Signature>
+                </sac:SignatureInformation>
+            </sig:UBLDocumentSignatures>
+        </ext:ExtensionContent>
+    </ext:UBLExtension>
+</ext:UBLExtensions>
+    
+    <cbc:ProfileID>reporting:1.0</cbc:ProfileID>
+    <cbc:ID>24534</cbc:ID>
+    <cbc:UUID>aa14c1f4-9fd2-459c-b570-e1671c28476d</cbc:UUID>
+    <cbc:IssueDate>2025-07-22</cbc:IssueDate>
+    <cbc:IssueTime>04:34:20</cbc:IssueTime>
+    <cbc:InvoiceTypeCode name="0100000">388</cbc:InvoiceTypeCode>
+    <cbc:Note>inv.Notes</cbc:Note>
+    <cbc:DocumentCurrencyCode>SAR</cbc:DocumentCurrencyCode>
+    <cbc:TaxCurrencyCode>SAR</cbc:TaxCurrencyCode>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>ICV</cbc:ID>
+        <cbc:UUID>24534</cbc:UUID>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>PIH</cbc:ID>
+        <cac:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">dSElWVi1naqfkn9xiTbKMM28Xp6b1pcx0guiD67Tl/k=</cbc:EmbeddedDocumentBinaryObject>
+        </cac:Attachment>
+    </cac:AdditionalDocumentReference>
+    
+    
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>QR</cbc:ID>
+        <cac:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">ARtNYWpkIEFsIEtoYWxlZWogVHJhZGluZyBFc3QCDzMwMDUxNjk2NjkwMDAwMwMTMjAyNS0wNy0yMlQwNDozNDoyMAQJMjk3MDI1LjUzBQgzODc0Mi40NgYsd0RWY3VRY0pWVUhmQjY4OUovcmxSYk9uNUtsTmowQ2g2Q0E4QWd6UjdTVT0HYE1FUUNJQTBLSVJpOWx0bHZSM0VlOTZXL0t1SERhZGhMT0NQUlVhNUxobjltMHdXS0FpQnZ0SDROQkhyZVRUODM0aS9vbjJWYTdaa0lxdHN3Z0ZkT2xLRlhGQXZ6aVE9PQhbMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqIi0vbIUezsNnMXbybvyLv+PVR+YyO8KZhOzCa1JZdoRyxdEbSSPkeKBHBVO45Z12izmffrzUe+kAKg39D72sw==</cbc:EmbeddedDocumentBinaryObject>
+        </cac:Attachment>
+</cac:AdditionalDocumentReference><cac:Signature>
+      <cbc:ID>urn:oasis:names:specification:ubl:signature:Invoice</cbc:ID>
+      <cbc:SignatureMethod>urn:oasis:names:specification:ubl:dsig:enveloped:xades</cbc:SignatureMethod>
+</cac:Signature><cac:AccountingSupplierParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="CRN">2066003018</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PostalAddress>
+                <cbc:StreetName>AI Madinah Almunawaruh</cbc:StreetName>
+                <cbc:BuildingNumber>7174</cbc:BuildingNumber>
+                <cbc:PlotIdentification>2581</cbc:PlotIdentification>
+                <cbc:CitySubdivisionName>Al Fayha Dist</cbc:CitySubdivisionName>
+                <cbc:CityName>RAS TANNURAH</cbc:CityName>
+                <cbc:PostalZone>32817</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID>300516966900003</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>Majd Al Khaleej Trading Est</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
+        </cac:Party>
+    </cac:AccountingSupplierParty>
+    <cac:AccountingCustomerParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="NAT">300000361310003</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PostalAddress>
+                <cbc:StreetName>Rayhana bint Zaid</cbc:StreetName>
+                <cbc:BuildingNumber>2929</cbc:BuildingNumber>
+                <cbc:PlotIdentification>0</cbc:PlotIdentification>
+                <cbc:CitySubdivisionName>Al-Areed Dis.</cbc:CitySubdivisionName>
+                <cbc:CityName>Riyadh</cbc:CityName>
+                <cbc:PostalZone>13342</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>Saudi Electricity Company</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
+        </cac:Party>
+    </cac:AccountingCustomerParty>
+    <cac:Delivery>
+        <cbc:ActualDeliveryDate>2025-06-19</cbc:ActualDeliveryDate>
+    </cac:Delivery>
+    <cac:PaymentMeans>
+        <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
+    </cac:PaymentMeans>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">38742.46</cbc:TaxAmount>
+        <cac:TaxSubtotal>
+            <cbc:TaxableAmount currencyID="SAR">258283.07</cbc:TaxableAmount>
+            <cbc:TaxAmount currencyID="SAR">38742.46</cbc:TaxAmount>
+            <cac:TaxCategory>
+                <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5305">S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153">VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">38742.46</cbc:TaxAmount>
+    </cac:TaxTotal>
+    <cac:LegalMonetaryTotal>
+        <cbc:LineExtensionAmount currencyID="SAR">258283.07</cbc:LineExtensionAmount>
+        <cbc:TaxExclusiveAmount currencyID="SAR">258283.07</cbc:TaxExclusiveAmount>
+        <cbc:TaxInclusiveAmount currencyID="SAR">297025.53</cbc:TaxInclusiveAmount>
+        <cbc:AllowanceTotalAmount currencyID="SAR">0</cbc:AllowanceTotalAmount>
+        <cbc:PrepaidAmount currencyID="SAR">0</cbc:PrepaidAmount>
+        <cbc:PayableAmount currencyID="SAR">297025.53</cbc:PayableAmount>
+    </cac:LegalMonetaryTotal>
+    <cac:InvoiceLine>
+        <cbc:ID>1</cbc:ID>
+        <cbc:Note>VALVE,GLOBE, 2 INCH, 2 INCH,1500 LBS,#2014 VALVE,GLOBE: SIZE: 2 INCH; PROCESS FLUID:
+WATER STEAM; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 600 DEG C; PORT:
+FULL; CONNECTION: WELDED; STYLE: WELDED BONNET; STEM DESIGN: RISING INSIDE SCREW;
+OPERATED: HANDWHEEL; BODY MATERIAL: ASTM A105N; TRIM: SSTL; SOFTGOODS:  GRAFOIL PACKING; STANDARD/SPECIFICATION: ASME B16.34; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#20141788 2 INCH HP VALVES/H.P. VALVES: P/N#S141788224 (2INCH)</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">2</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">21951.80</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">3292.77</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">25244.57</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147007</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">10975.9</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>2</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE, 2 IN, 2 IN,800 LBS,187 DEG C VALVE,GLOBE: SIZE: 2 IN; PROCESS FLUID: WATER;
+DESIGN RATING: 800 LBS; TEMPERATURE RATING: 187 DEG C; PORT: FULL; CONNECTION:
+BW SCHED 80 (XS) ACC ASME B16.25; STYLE: GLOBE Y; STEM DESIGN: 17 CR; OPERATED:
+HANDWHEEL CARBON STEEL; BODY MATERIAL: ASTM A105N / SA105N; TRIM: THROTTLE;
+SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788110"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">12643.72</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1896.56</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">14540.28</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147180</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">12643.72</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>3</cbc:ID>
+        <cbc:Note>"VALVE,CHECK,DISC, 3IN,300 LBS,170 DEG C VALVE,CHECK: DISC MOVEMENT: DISC; PROCESS FLUID: WATER; SIZE: 3 IN; CONFIGURATION: 1 WAY; DESIGN RATING: 300 LBS; PORT: FULL; TEMPERATURE RATING: 170 DEG C; CONNECTION: BW SCHED 40 (STD) ACC ASME B16.25 FIG 2B; STYLE: CHECK, SWING (INNER SHAFT); BODY MATERIAL: (S) A216 WCB; TRIM: SWING; SOFTGOODS: 304 AND GRAPHITE (SPW); STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788105 REV2"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">10975.90</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1646.39</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">12622.29</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147188</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">10975.9</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>4</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE,12 IN,12 IN,150 LBS,#2014178 VALVE,GLOBE: SIZE: 12 IN; PROCESS FLUID: WATER;
+DESIGN RATING: 150 LBS; TEMPERATURE RATING: 272 DEG C; PORT: FULL;
+CONNECTION: BW SCHED STD ACC ASME B16.25 FIG  2B; STYLE: GLOBE; STEM DESIGN:
+ASTM A479 410; OPERATED: ACTUATOR; BODY MATERIAL: ASTM A216 WCB / SA 216 WCB; TRIM: FLEXIBLE WEDGE; SOFTGOODS: 304/GRAPHITE (SPW); STANDARD/SPECIFICATION: ASME;
+ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#20141788 12 INCHES
+HP VALVES/H.P. VALVES: P/N#S141788101 REV 2"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">39328.84</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">5899.33</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">45228.17</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147191</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">39328.84</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>5</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE,(1-1/2) IN,(1-1/2) IN,#S1417 VALVE,GLOBE: SIZE: (1-1/2) IN; PROCESS FLUID:
+WATER; DESIGN RATING: 2500 LBS; TEMPERATURE RATING: 531 DEG C; PORT: FULL; CONNECTION: BW SCHED 160 ACC ASME B16.25; STYLE: GLOBE, THROTTLE; STEM DESIGN: 17 CR; OPERATED: ELECTRIC ACTUATOR DIM120. A30; BODY MATERIAL: ASTM A182 F22/SA182
+F22 ; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA:
+HP MAIN STEAM DRAIN VALVES TO ATMOSPHERIC FLASH TANK
+HP VALVES/H.P. VALVES: P/N#S141788121 REV 1"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">15423.42</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">2313.51</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">17736.93</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147195</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">15423.42</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>6</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE,(1-1/2) IN,(1-1/2) IN,#S1417 VALVE,GLOBE: SIZE: (1-1/2) IN; PROCESS FLUID:
+WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 460 DEG C; PORT: FULL; CONNECTION: BW SCHED 160 ACC ASME B16.25 ; STYLE: GLOBE, THROTTLE; STEM DESIGN:
+17 CR; OPERATED: ELECTRIC ACTUATOR DIM120 A 30; BODY MATERIAL: ASTM A182 F22 / SA182 F22; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME;
+ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788120 REV 1"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">15423.42</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">2313.51</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">17736.93</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147199</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">15423.42</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>7</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE, 2 IN, 2 IN,1500 LBS,318 DEG C VALVE,GLOBE: SIZE: 2 IN; PROCESS FLUID:
+WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 318 DEG C; PORT: FULL;
+CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25; STYLE: GLOBE Y; STEM DESIGN:
+17 CR; OPERATED: HANDWHEEL CARBON STEEL; BODY MATERIAL: ASTM A 105N / SA 105 N;
+TRIM: THROTTLE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788109"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">10975.90</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1646.39</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">12622.29</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147200</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">10975.9</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>8</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE,3/4 IN,3/4 IN,1500 LBS,#S141
+VALVE,GLOBE: SIZE: 3/4 IN; PROCESS FLUID: WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 170 DEG C; PORT: FULL; CONNECTION:BW SCHED 80(XS) ACC ASME B16.25; STYLE:
+GLOBE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL CARBON STEEL AISI 410; BODY MATERIAL:
+ASTM A105N / SA105N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION:
+ASME; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788115 REV3"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">3470.71</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">520.61</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">3991.32</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147201</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">3470.71</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>9</cbc:ID>
+        <cbc:Note>"VALVE,GLOBE,3/4 IN,3/4 IN,2500 LBS,#S141 VALVE,GLOBE: SIZE: 3/4 IN; PROCESS FLUID: WATER;
+DESIGN RATING: 2500 LBS; TEMPERATURE RATING: 531 DEG C; PORT: FULL; CONNECTION:
+BW SCHED 160 ACC ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 17 CR; OPERATED: HANDWHEEL CARBON STEEL; BODY MATERIAL: ASTM A182 F22 / SA 182 F22; TRIM: STELLITE; SOFTGOODS:
+GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA:
+HP VALVES/H.P. VALVES: P/N#S141788114 REV 2"</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">5416.50</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">812.48</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">6228.98</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147203</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">5416.5</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>10</cbc:ID>
+        <cbc:Note>VALVE,GLOBE, 1 IN, 1 IN,1500 LBS,185 DEG C VALVE,GLOBE: SIZE: 1 IN; PROCESS FLUID: SATURATED STEAM; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 185 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE, PARALLEL SLIDE; STEM DESIGN: 17 CR; OPERATED: ELECTRICAL ACTUATOR / DREHMO / TYPE: DI M30.A30; BODY MATERIAL: ASTM A105N/SA105N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#S141788126 REV 2</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">9864.02</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1479.60</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">11343.62</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147204</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">9864.02</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>11</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,3/4 IN,3/4 IN,800 LBS,#S1417 VALVE,GLOBE: SIZE: 3/4 IN; PROCESS FLUID: WATER; DESIGN RATING: 800 LBS; TEMPERATURE RATING: 170 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105N / SA105N; TRIM: STELLITED; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: MANUAL ISOLATION VALVES FOR LP FEED WAT ER LINE TRANSMITTERS AMP; FEED WATER PR ESSURE TRANSMITTERS HP VALVES/H.P. VALVES: P/N#S141788116 REV 4</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">3470.71</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">520.61</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">3991.32</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147206</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">3470.71</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>12</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,(1-1/2) IN,(1-1/2) IN,#S1417 VALVE,GLOBE: SIZE: (1-1/2) IN; PROCESS FLUID: WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 318 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105N/SA105N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP ECONOMIZER DRAIN VALVE TO ATMOSPHERI C FLASH TANK HP VALVES/H.P. VALVES: P/N#S141788122 REV 2</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">5416.50</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">812.48</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">6228.98</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147207</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">5416.5</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>13</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,1-1/2 IN,1-1/2 IN,800 LBS,#S VALVE,GLOBE: SIZE: 1-1/2 IN; PROCESS FLUID: WATER; DESIGN RATING: 800 LBS; TEMPERATURE RATING: 187 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105N/SA105N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: LP ECONOMIZER DRAIN VALVE TO ATMOSPHERI C FLASH TANK HP VALVES/H.P. VALVES: P/N#S141788123 REV 2</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">5416.50</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">812.48</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">6228.98</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147211</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">5416.5</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>14</cbc:ID>
+        <cbc:Note>VALVE,GLOBE, 1 IN, 1 IN,1500 LBS,318 DEG C VALVE,GLOBE: SIZE: 1 IN; PROCESS FLUID: WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 318 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE, PARALLEL SLIDE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105 N / SA 105 N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#S141788129 REV 3VALVE,GLOBE, 1 IN, 1 IN,1500 LBS,318 DEG C VALVE,GLOBE: SIZE: 1 IN; PROCESS FLUID: WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 318 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE, PARALLEL SLIDE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105 N / SA 105 N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#S141788129 REV 3</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">3470.71</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">520.61</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">3991.32</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147212</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">3470.71</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>15</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,(1-1/2) INCHES,#S141788119RE VALVE,GLOBE: SIZE: (1-1/2) INCHES; PROCESS FLUID: WATER; DESIGN RATING: 1500 LBS; TEMPERATURE RATING: 272 DEG C; PORT: FULL; CONNECTION: BW SCHED 80 (XS) ACC ASME B16.25 ; STYLE: GLOBE, THROTTLE; STEM DESIGN: 17 CR; OPERATED: ELECTRIC ACTUATOR DIM59 A 30 ; BODY MATERIAL: ASTM A105N / SA105N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: LP MAIN STEAM DRAIN VALVES TO ATMOSPHER IC FLASH TANK HP VALVES/H.P. VALVES: P/N#S141788119 REV 2</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">12643.72</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1896.56</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">14540.28</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147214</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">12643.72</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>16</cbc:ID>
+        <cbc:Note>VALVE,GLOBE, 1 IN, 1 IN,800 LBS,185 DEG C VALVE,GLOBE: SIZE: 1 IN; PROCESS FLUID: WATER; DESIGN RATING: 800 LBS; TEMPERATURE RATING: 185 DEG C; PORT: FULL; CONNECTION: BW SCHED 80(XS) ACC ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 13 CR; OPERATED: HANDWHEEL AISI 410 ; BODY MATERIAL: ASTM A105 N / SA 105 N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#S141788130 REV 2</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">3470.71</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">520.61</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">3991.32</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147219</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">3470.71</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>17</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,INCHES 1,INCHES 1,800 LBS,#S VALVE,GLOBE: SIZE: INCHES 1 ; PROCESS FLUID: STEAM SATURATED; DESIGN RATING: 800 LBS; TEMPERATURE RATING: 419 DEG C; PORT: FULL; CONNECTION: BW SCHED .80(XS) ACC .ASME B16.25 ; STYLE: GLOBE; STEM DESIGN: 13 CR; OPERATED: HAND WHEEL AISI 410 ; BODY MATERIAL: ASTM A105 N/SA 105 N; TRIM: STELLITE; SOFTGOODS: GRAPHITE; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#S141788151 REV 1</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">3470.71</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">520.61</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">3991.32</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147255</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">3470.71</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>18</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,50 MM,50 MM,800 LBS,#2015156 VALVE,GLOBE: SIZE: 50 MM; PROCESS FLUID: HIGH PRESSURE WATER; DESIGN RATING: 800 LBS; TEMPERATURE RATING: MINUS 5 DEG C TO 100 DEG C; PORT: NORMAL; CONNECTION: WELDING; STYLE: FORGED STEEL THROTTLE VALVE; STEM DESIGN: STEM WITH OUTSIDE SCREW RISING DOWN FOR CLOSING AND RISING UP FOR OPENING.; OPERATED: MOTOR OPERATED VALVE BY DREHMO I MATIC ACTUATOR; BODY MATERIAL: ASTM A105N / SA105N; TRIM: SEAT: STELLITE, LOOSE BACK SEAT: AISI 3 04 ; SOFTGOODS: STEM PACKING: GRAPHITE; STANDARD/SPECIFICATION: ASTM A105N / SA105N; ADDITIONAL DATA: HP FEED WATER LINE FILLING VALVE WITH A CTUATORMANUFACTURE: HP VALVESKKS: HAIL 2 CC B 0LCA15AA001TYPE: FORGED STEEL THROT TLE VALVEPRESSURE CLASS: 800 LBSSIZE: 5 0 MM 2 INCHACTUATOR: MAKE DREHMO IMATIC , DIM059 F10.A19PART NO.: 20151564 MOV 50 MM HP VALVES/H.P. VALVES: P/N#20151564 MOV 50 MM</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">2</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">30846.84</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">4627.03</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">35473.87</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147277</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">15423.42</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>19</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,65 MM,65 MM,150 LBS,#2015156 VALVE,GLOBE: SIZE: 65 MM; PROCESS FLUID: DEMI WATER; DESIGN RATING: 150 LBS; TEMPERATURE RATING: MINUS 5 DEG C TO 100 DEG C; PORT: NORMAL; CONNECTION: FLANGED RF SCHED. 10S ACC ASME B16.5 ; STYLE: FORGED STEEL DIAPHRAGM VALVE; STEM DESIGN: STEM RISING DOWN FOR CLOSING AND RISING UP FOR OPENING WITH DIAPHRAGM; OPERATED: MOTOR OPERATED VALVE BY DREHMO I MATIC ACTUATOR; BODY MATERIAL: ASTM A351 CF 3M / SA351 CF 3M; TRIM: ACC. ASME B16.34 ; SOFTGOODS: N/A; STANDARD/SPECIFICATION: ACC. ASME B16.34 ; ADDITIONAL DATA: CCW FILLING VALVE WITH ACTUATORMANUFACT URE: HP VALVESKKS: B 5GHC15AA001TYPE: FO RGED STEEL DIAPHRAGM VALVEDIAPHRAGM: EP DMFLANGE F10: CARBON STEELSTEM: A276 31 6BOLT NUT: B8M 8MPRESSURE CLASS: 150 LB SSIZE: 65 MM (2.5 INCH)ACTUATOR: MAKE D REHMO IMATIC, DIM 3 F10.A30ACTUATOR VOLT AGE: 480 VACPART NO. : 20151564 MOV DIA PHRAGM 65 MM HP VALVES/H.P. VALVES: P/N#20151564 MOV DIAPHRAGM 65 MM</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">2</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">31958.72</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">4793.81</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">36752.53</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147278</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">15979.36</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+    <cac:InvoiceLine>
+        <cbc:ID>20</cbc:ID>
+        <cbc:Note>VALVE,GLOBE,(1 1/2) INCHES,#HAIL2CC00LD VALVE,GLOBE: SIZE: (1 1/2) INCHES; PROCESS FLUID: WATER; DESIGN RATING: 800 LBS; TEMPERATURE RATING: 272 DEG C; PORT: FULL; CONNECTION: BW SCHED. (80) XS ACC . ASME B16 . 25; STYLE: FORGED STEEL THROTTLE VALVE; STEM DESIGN: ASTM A479 410; OPERATED: MAKE : DREHMO TYPE: DIM059 F10 . A30; BODY MATERIAL: ASTM A105 N / SA 105 N; TRIM: STELLITED; SOFTGOODS: STEEL ZINC PLATED; STANDARD/SPECIFICATION: ASME; ADDITIONAL DATA: HP VALVES/H.P. VALVES: P/N#HAIL2CC00LDKJDCHPV0017</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="Piece">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">12643.72</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>No reason provided</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">1896.56</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">14540.28</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>901147355</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">12643.72</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+</Invoice>
