@@ -12,7 +12,7 @@ import BillingReferenceTag from "./invoice_billing_reference_template.js";
 const template = /* XML */ `
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"><ext:UBLExtensions>SET_UBL_EXTENSIONS_STRING</ext:UBLExtensions>
-    
+
     <cbc:ProfileID>reporting:1.0</cbc:ProfileID>
     <cbc:ID>SET_INVOICE_SERIAL_NUMBER</cbc:ID>
     <cbc:UUID>SET_TERMINAL_UUID</cbc:UUID>
@@ -70,14 +70,13 @@ const template = /* XML */ `
       </cac:PartyLegalEntity>
     </cac:Party>
   </cac:AccountingSupplierParty>
-  <cac:AccountingCustomerParty> <cac:Party>
-      <cac:PartyIdentification>
-        <cbc:ID schemeID="SET_CUSTOMER_NAT_OR_CRN">SET_CUSTOMER_COMMERCIAL_REGISTRATION_NUMBER</cbc:ID>
-      </cac:PartyIdentification>
-      <cac:PostalAddress>
+
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+ 
+     <cac:PostalAddress>
         <cbc:StreetName>SET_CUSTOMER_STREET_NAME</cbc:StreetName>
-        <cbc:BuildingNumber>SET_CUSTOMER_BUILDING_NUMBER</cbc:BuildingNumber>
-        <cbc:PlotIdentification>SET_CUSTOMER_PLOT_IDENTIFICATION</cbc:PlotIdentification>
+        <cbc:BuildingNumber>SET_CUSTOMER_BUILDING_NUMBER</cbc:BuildingNumber> 
         <cbc:CitySubdivisionName>SET_CUSTOMER_CITY_SUBDIVISION</cbc:CitySubdivisionName>
         <cbc:CityName>SET_CUSTOMER_CITY</cbc:CityName>
         <cbc:PostalZone>SET_CUSTOMER_POSTAL_NUMBER</cbc:PostalZone>
@@ -85,15 +84,20 @@ const template = /* XML */ `
           <cbc:IdentificationCode>SA</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
+
       <cac:PartyTaxScheme>
+       <cbc:CompanyID>SET_CUSTOMER_COMMERCIAL_REGISTRATION_NUMBER</cbc:CompanyID>
         <cac:TaxScheme>
           <cbc:ID>VAT</cbc:ID>
         </cac:TaxScheme>
       </cac:PartyTaxScheme>
+
       <cac:PartyLegalEntity>
         <cbc:RegistrationName>SET_CUSTOMER_VAT_NAME</cbc:RegistrationName>
       </cac:PartyLegalEntity>
-    </cac:Party></cac:AccountingCustomerParty>
+
+    </cac:Party>
+  </cac:AccountingCustomerParty>
 
 
 </Invoice>
@@ -176,7 +180,7 @@ export interface ZATCAInvoiceProps {
   egs_info: EGSUnitInfo;
   documentCurrencyCode: DocumentCurrencyCode;
   conversion_rate?: number;
-  invoiceType: string;
+  invoiceType?: string;//temp
   payment_method: ZATCAPaymentMethods;
   customerInfo: ZatcaCustomerInfo;
   invoice_counter_number: number;
@@ -291,10 +295,7 @@ export default function populate(props: ZATCAInvoiceProps): string {
     "SET_CUSTOMER_COMMERCIAL_REGISTRATION_NUMBER",
     props.customerInfo.NAT_number
   );
-  populated_template = populated_template.replace(
-    "SET_CUSTOMER_NAT_OR_CRN",
-    props.cancelation ? "CRN" : "NAT"
-  );
+
 
   populated_template = populated_template.replace(
     "SET_CUSTOMER_STREET_NAME",
