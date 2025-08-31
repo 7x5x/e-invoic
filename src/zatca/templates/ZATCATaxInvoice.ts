@@ -112,18 +112,21 @@ export class ZATCATaxInvoice {
       });
     }
 
-    let line_item_subtotal =
-      (line_item.tax_exclusive_price -
-        line_item_discount / line_item.quantity) *
-      line_item.quantity;
+    const round2 = (value: number) => Number.parseFloat(value.toFixedHalfUp(2));
+
+    const discountPerUnit = line_item_discount > 0 ? (line_item_discount / line_item.quantity):0;     // Discount applied per unit
+    const netUnitPrice = line_item.tax_exclusive_price - discountPerUnit;  // Price per unit after discount
+    const lineItemSubtotal = line_item.quantity * netUnitPrice;                // Subtotal for this line item (net price * quantity)
+    const taxableAmount = round2(lineItemSubtotal);
+
+
 
     // Calc total taxes
     // BR-KSA-DEC-02
 
-    line_item_total_taxes =
-      line_item_total_taxes +
-      (line_item_subtotal + (line_item.penalty?.amount || 0)) *
-      line_item.VAT_percent;
+    const vatAmount = taxableAmount * line_item.VAT_percent
+
+    line_item_total_taxes += round2(vatAmount);
 
     // BR-KSA-DEC-03, BR-KSA-51
     cacTaxTotal = {
@@ -134,17 +137,18 @@ export class ZATCATaxInvoice {
       "cbc:RoundingAmount": {
         "@_currencyID": CurrencyCode,
         "#text": (
-          parseFloat(line_item_subtotal.toFixedHalfUp(2)) +
+          parseFloat(lineItemSubtotal.toFixedHalfUp(2)) +
           parseFloat(line_item_total_taxes.toFixedHalfUp(2))
         ).toFixed(2),
       },
     };
 
+
     return {
       cacAllowanceCharges,
       cacClassifiedTaxCategories,
       cacTaxTotal,
-      line_item_total_tax_exclusive: line_item_subtotal,
+      line_item_total_tax_exclusive: lineItemSubtotal,
       line_item_total_taxes,
       line_item_discount,
     };
