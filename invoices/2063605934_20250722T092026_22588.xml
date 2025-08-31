@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"><ext:UBLExtensions>
+    <ext:UBLExtension>
+        <ext:ExtensionURI>urn:oasis:names:specification:ubl:dsig:enveloped:xades</ext:ExtensionURI>
+        <ext:ExtensionContent>
+            <sig:UBLDocumentSignatures xmlns:sig="urn:oasis:names:specification:ubl:schema:xsd:CommonSignatureComponents-2" xmlns:sac="urn:oasis:names:specification:ubl:schema:xsd:SignatureAggregateComponents-2" xmlns:sbc="urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2">
+                <sac:SignatureInformation> 
+                    <cbc:ID>urn:oasis:names:specification:ubl:signature:1</cbc:ID>
+                    <sbc:ReferencedSignatureID>urn:oasis:names:specification:ubl:signature:Invoice</sbc:ReferencedSignatureID>
+                    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="signature">
+                        <ds:SignedInfo>
+                            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2006/12/xml-c14n11"/>
+                            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+                            <ds:Reference Id="invoiceSignedData" URI="">
+                                <ds:Transforms>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::ext:UBLExtensions)</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::cac:Signature)</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+                                        <ds:XPath>not(//ancestor-or-self::cac:AdditionalDocumentReference[cbc:ID='QR'])</ds:XPath>
+                                    </ds:Transform>
+                                    <ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11"/>
+                                </ds:Transforms>
+                                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                <ds:DigestValue>FkxW3N5EVm07adqiwnp2Or18ErHPBxLv7Y/J4jDgVYk=</ds:DigestValue>
+                            </ds:Reference>
+                            <ds:Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#xadesSignedProperties">
+                                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                <ds:DigestValue>OTk2ZmZlZTRjM2UxOTAxOGM2NDJhZWQzMjRiMjNjMzIxN2U4ZjhhOGI2NmI5ZmU1ZGI5NTNkYzE3ZWRjZTRkNw==</ds:DigestValue>
+                            </ds:Reference>
+                        </ds:SignedInfo>
+                        <ds:SignatureValue>MEUCIGMAruYHNGPP90fu86vv9Ras+f/rcTMJp7hLpPyqyF7VAiEA8qKEGxa2COk3HImYy8geNE447sgHfX2Ox7WOGMVHfEw=</ds:SignatureValue>
+                        <ds:KeyInfo>
+                            <ds:X509Data>
+                                <ds:X509Certificate>MIICGzCCAcECFBzuP72ESVPDTEDgJOUieD3ttGq5MAoGCCqGSM49BAMCMIGPMQswCQYDVQQGEwJTQTEPMA0GA1UECAwGUml5YWRoMRUwEwYDVQQHDAxEZWZhdWx0IENpdHkxHjAcBgNVBAoMFVpBVENBIGVJbnZvaWNpbmcgUHJvZDEYMBYGA1UECwwPZUludm9pY2luZyBQcm9kMR4wHAYDVQQDDBV6YXRjYS1laW52b2ljaW5nLXByb2QwHhcNMjUwNTE5MTQyOTEyWhcNMjgwNDE4MTQyOTEyWjCBjzELMAkGA1UEBhMCU0ExDzANBgNVBAgMBlJpeWFkaDEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MR4wHAYDVQQKDBVaQVRDQSBlSW52b2ljaW5nIFByb2QxGDAWBgNVBAsMD2VJbnZvaWNpbmcgUHJvZDEeMBwGA1UEAwwVemF0Y2EtZWludm9pY2luZy1wcm9kMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqIi0vbIUezsNnMXbybvyLv+PVR+YyO8KZhOzCa1JZdoRyxdEbSSPkeKBHBVO45Z12izmffrzUe+kAKg39D72szAKBggqhkjOPQQDAgNIADBFAiEAlTrllsL95KjhXnQUemeY5vAZqFdoJ+GN9Gpl/HeBb3ACIALvcyKecV+B9vBXPoRt8Iv6GRwr51vwV6r0um9yNa12</ds:X509Certificate>
+                            </ds:X509Data>
+                        </ds:KeyInfo>
+                        <ds:Object>
+                            <xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Target="signature">
+                                <xades:SignedProperties Id="xadesSignedProperties">
+                                    <xades:SignedSignatureProperties>
+                                        <xades:SigningTime>2025-07-22T09:20:27</xades:SigningTime>
+                                        <xades:SigningCertificate>
+                                            <xades:Cert>
+                                                <xades:CertDigest>
+                                                    <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                                                    <ds:DigestValue>MGE2ZjdhYmFmNzlmNDE3MDdhMmMzNzAxMjY0YWRhYjQ2NzliN2Y0Njk1Zjg3NWEyZmE5MDBmM2Q0NDI1ZjM2Nw==</ds:DigestValue>
+                                                </xades:CertDigest>
+                                                <xades:IssuerSerial>
+                                                    <ds:X509IssuerName>CN=zatca-einvoicing-prod, OU=eInvoicing Prod, O=ZATCA eInvoicing Prod, L=Default City, ST=Riyadh, C=SA</ds:X509IssuerName>
+                                                    <ds:X509SerialNumber>165164871503537675966491882910642908362769197753</ds:X509SerialNumber>
+                                                </xades:IssuerSerial>
+                                            </xades:Cert>
+                                        </xades:SigningCertificate>
+                                    </xades:SignedSignatureProperties>
+                                </xades:SignedProperties>
+                            </xades:QualifyingProperties>
+                        </ds:Object>
+                    </ds:Signature>
+                </sac:SignatureInformation>
+            </sig:UBLDocumentSignatures>
+        </ext:ExtensionContent>
+    </ext:UBLExtension>
+</ext:UBLExtensions>
+    
+    <cbc:ProfileID>reporting:1.0</cbc:ProfileID>
+    <cbc:ID>22588</cbc:ID>
+    <cbc:UUID>49b3850a-82a4-4cd7-b7f7-79faee3a4466</cbc:UUID>
+    <cbc:IssueDate>2025-07-22</cbc:IssueDate>
+    <cbc:IssueTime>09:20:26</cbc:IssueTime>
+    <cbc:InvoiceTypeCode name="0100000">388</cbc:InvoiceTypeCode>
+    <cbc:Note>invoice_level_note</cbc:Note>
+    <cbc:DocumentCurrencyCode>SAR</cbc:DocumentCurrencyCode>
+    <cbc:TaxCurrencyCode>SAR</cbc:TaxCurrencyCode>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>ICV</cbc:ID>
+        <cbc:UUID>22588</cbc:UUID>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>PIH</cbc:ID>
+        <cac:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">NmMnTxA95Bvd87sQmGyNKa3PHTjvRPNdtmBfca+1Q74=</cbc:EmbeddedDocumentBinaryObject>
+        </cac:Attachment>
+    </cac:AdditionalDocumentReference>
+    
+    
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>QR</cbc:ID>
+        <cac:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">AR9OQVNTSVIgU0FMIEhZREVSIEFORCBQQVJUTkVSIENPAg8zMDA0MTA0NjIxMDAwMDMDEzIwMjUtMDctMjJUMDk6MjA6MjYEBzY0NDAuMDAFBjg0MC4wMAYsRmt4VzNONUVWbTA3YWRxaXducDJPcjE4RXJIUEJ4THY3WS9KNGpEZ1ZZaz0HYE1FVUNJR01BcnVZSE5HUFA5MGZ1ODZ2djlSYXMrZi9yY1RNSnA3aExwUHlxeUY3VkFpRUE4cUtFR3hhMkNPazNISW1ZeThnZU5FNDQ3c2dIZlgyT3g3V09HTVZIZkV3PQhbMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqIi0vbIUezsNnMXbybvyLv+PVR+YyO8KZhOzCa1JZdoRyxdEbSSPkeKBHBVO45Z12izmffrzUe+kAKg39D72sw==</cbc:EmbeddedDocumentBinaryObject>
+        </cac:Attachment>
+</cac:AdditionalDocumentReference><cac:Signature>
+      <cbc:ID>urn:oasis:names:specification:ubl:signature:Invoice</cbc:ID>
+      <cbc:SignatureMethod>urn:oasis:names:specification:ubl:dsig:enveloped:xades</cbc:SignatureMethod>
+</cac:Signature><cac:AccountingSupplierParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="CRN">2063605934</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PostalAddress>
+                <cbc:StreetName>hazm st</cbc:StreetName>
+                <cbc:BuildingNumber>6602</cbc:BuildingNumber>
+                <cbc:PlotIdentification>4167</cbc:PlotIdentification>
+                <cbc:CitySubdivisionName>Al-hazm Dist</cbc:CitySubdivisionName>
+                <cbc:CityName>safwa</cbc:CityName>
+                <cbc:PostalZone>32714</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID>300410462100003</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>NASSIR SAL HYDER AND PARTNER CO</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
+        </cac:Party>
+    </cac:AccountingSupplierParty>
+    <cac:AccountingCustomerParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="NAT">300517004400003</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PostalAddress>
+                <cbc:StreetName>ا لدمام،الربيع،طريق الامير محمد بن فهد ،314</cbc:StreetName>
+                <cbc:BuildingNumber>3810</cbc:BuildingNumber>
+                <cbc:PlotIdentification>3810</cbc:PlotIdentification>
+                <cbc:CitySubdivisionName>AL DAMMAM</cbc:CitySubdivisionName>
+                <cbc:CityName>DAMMAM</cbc:CityName>
+                <cbc:PostalZone>31952</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>AL-NAFJAN CONTRACTING</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
+        </cac:Party>
+    </cac:AccountingCustomerParty>
+    <cac:Delivery>
+        <cbc:ActualDeliveryDate>2022-07-20</cbc:ActualDeliveryDate>
+    </cac:Delivery>
+    <cac:PaymentMeans>
+        <cbc:PaymentMeansCode>42</cbc:PaymentMeansCode>
+    </cac:PaymentMeans>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">840.00</cbc:TaxAmount>
+        <cac:TaxSubtotal>
+            <cbc:TaxableAmount currencyID="SAR">5600.00</cbc:TaxableAmount>
+            <cbc:TaxAmount currencyID="SAR">840.00</cbc:TaxAmount>
+            <cac:TaxCategory>
+                <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5305">S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153">VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">840.00</cbc:TaxAmount>
+    </cac:TaxTotal>
+    <cac:LegalMonetaryTotal>
+        <cbc:LineExtensionAmount currencyID="SAR">5600.00</cbc:LineExtensionAmount>
+        <cbc:TaxExclusiveAmount currencyID="SAR">5600.00</cbc:TaxExclusiveAmount>
+        <cbc:TaxInclusiveAmount currencyID="SAR">6440.00</cbc:TaxInclusiveAmount>
+        <cbc:AllowanceTotalAmount currencyID="SAR">0</cbc:AllowanceTotalAmount>
+        <cbc:PrepaidAmount currencyID="SAR">0</cbc:PrepaidAmount>
+        <cbc:PayableAmount currencyID="SAR">6440.00</cbc:PayableAmount>
+    </cac:LegalMonetaryTotal>
+    <cac:InvoiceLine>
+        <cbc:ID>3</cbc:ID>
+        <cbc:Note>another note</cbc:Note>
+        <cbc:InvoicedQuantity unitCode="PCE">4</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">5600.00</cbc:LineExtensionAmount>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>0  Penalty</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="SAR">0.00</cbc:Amount>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">840.00</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">6440.00</cbc:RoundingAmount>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Name>Testing of HV cable using VLF and submission of required reports as per SEC requirements</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">1400</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+</Invoice>
